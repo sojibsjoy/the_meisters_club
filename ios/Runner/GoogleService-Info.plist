@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>525249795666-qdhbc6ubmi3grrvh0ufblsnqikuqnb3m.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.525249795666-qdhbc6ubmi3grrvh0ufblsnqikuqnb3m</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>525249795666-qc9sucjn6mc8s113mmblm4pevd88pef2.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC7__PReeffP_0R1UaLyZ0oWThd663NQlA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>525249795666</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.xyz</string>
+	<key>PROJECT_ID</key>
+	<string>the-meisters-club</string>
+	<key>STORAGE_BUCKET</key>
+	<string>the-meisters-club.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:525249795666:ios:4a0f004d43326b4dc2718b</string>
+</dict>
+</plist>

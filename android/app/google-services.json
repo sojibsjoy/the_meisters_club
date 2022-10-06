@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "525249795666",
+    "project_id": "the-meisters-club",
+    "storage_bucket": "the-meisters-club.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525249795666:android:780e11778ab5fcdec2718b",
+        "android_client_info": {
+          "package_name": "com.example.xyz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525249795666-qc9sucjn6mc8s113mmblm4pevd88pef2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.xyz",
+            "certificate_hash": "e2a6952f959c0dc04d684c08871ef8e3465cb70d"
+          }
+        },
+        {
+          "client_id": "525249795666-ruvaihfehia2e4s9k569naeusbcpfsfs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO5KF5z-6VZwq3BrymTpTKrx7IIx02FEg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525249795666-ruvaihfehia2e4s9k569naeusbcpfsfs.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "525249795666-qdhbc6ubmi3grrvh0ufblsnqikuqnb3m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.xyz"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
