@@ -9,7 +9,6 @@ import '../../config/image_path_provider/image_path_provider.dart';
 import '../../config/text_style_path_provider/text_style.dart';
 import '../../controllers/tab/tab_screen_controller.dart';
 import '../../screens/notification/notification_screen.dart';
-import '../../utils/login_checker/login_checker.dart';
 import '../../utils/url_launcher/url_launcher.dart';
 import '../gradient_text/gradient_text.dart';
 
@@ -53,51 +52,57 @@ Widget appBarMenuScreen() {
     width: Get.width,
     // padding: EdgeInsets.symmetric(vertical: 5),
     margin: const EdgeInsets.symmetric(horizontal: 8),
-    child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-      GestureDetector(
-          onTap: () {
-            Get.back();
-          },
-          child: SizedBox(width: 40, child: SvgPicture.asset(ImagePath.close))),
-      Expanded(
-        // flex: 0,
-        child: Container(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text(
-              "THE MEISTERS CLUB",
-              style: regular700.copyWith(color: AppColor.primary, fontSize: 14),
-            ),
-            Text(
-              "welcome to the 1%",
-              style: regular400.copyWith(
-                  color: AppColor.subFontColor, fontSize: 8),
-            )
-          ]),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        GestureDetector(
+            onTap: () {
+              Get.back();
+            },
+            child:
+                SizedBox(width: 40, child: SvgPicture.asset(ImagePath.close))),
+        Expanded(
+          // flex: 0,
+          child: Container(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Text(
+                "THE MEISTERS CLUB",
+                style:
+                    regular700.copyWith(color: AppColor.primary, fontSize: 14),
+              ),
+              Text(
+                "welcome to the 1%",
+                style: regular400.copyWith(
+                    color: AppColor.subFontColor, fontSize: 8),
+              )
+            ]),
+          ),
         ),
-      ),
-      Get.find<TabScreenController>().isLogin.value
-          ? GestureDetector(onTap: () {}, child: diamondWithColorWidget())
-          : Container(
-              width: 40,
-            )
-    ]),
+        // Get.find<TabScreenController>().isLogin.value
+        //     ? GestureDetector(onTap: () {}, child: diamondWithColorWidget())
+        //     : Container(
+        //         width: 40,
+        //       )
+      ],
+    ),
   );
 }
 
-Widget diamondWithColorWidget() {
-  return Stack(
-    alignment: Alignment.center,
-    children: [
-      SvgPicture.asset(ImagePath.circle_logo),
-      Positioned(
-        top: 13.5,
-        child: SvgPicture.asset(ImagePath.diamond_shape,
-            color: Color(int.parse(
-                Get.find<TabScreenController>().diamondColorString.value))),
-      ),
-    ],
-  );
-}
+// Widget diamondWithColorWidget() {
+//   return Stack(
+//     alignment: Alignment.center,
+//     children: [
+//       SvgPicture.asset(ImagePath.circle_logo),
+//       Positioned(
+//         top: 13.5,
+//         child: SvgPicture.asset(ImagePath.diamond_shape,
+//             color: Color(int.parse(
+//                 Get.find<TabScreenController>().diamondColorString.value))),
+//       ),
+//     ],
+//   );
+// }
 
 Widget row({required String? text, onTap}) {
   return Row(

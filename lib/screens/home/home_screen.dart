@@ -839,24 +839,26 @@ Widget chatRoomWidget({
               child: Stack(
                 alignment: Alignment.topCenter,
                 children: [
-                  Positioned(
-                    top: 0,
-                    left: 5,
-                    child: SizedBox(
-                      // width: 500,
-                      // height: 500,
-                      // decoration: BoxDecoration(color:AppColor.red,borderRadius: circularBorder),
-                      child: ClipRRect(
-                          // borderRadius: circularBorder(),
-                          child: SvgPicture.asset(
-                        ImagePath.chat,
-                        fit: BoxFit.cover,
-                        color: AppColor.subFontColor.withOpacity(0.5),
-                      )),
-                    ),
-                  ),
+                  // Positioned(
+                  //   top: 0,
+                  //   left: 5,
+                  //   child: SizedBox(
+                  //     // width: 500,
+                  //     // height: 500,
+                  //     // decoration: BoxDecoration(color:AppColor.red,borderRadius: circularBorder),
+                  //     child: ClipRRect(
+                  //       // borderRadius: circularBorder(),
+                  //       child: SvgPicture.asset(
+                  //         ImagePath.chat,
+                  //         fit: BoxFit.cover,
+                  //         color: AppColor.subFontColor.withOpacity(0.5),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   Positioned(
                     bottom: 0,
+                    left: 0,
                     right: 0,
                     child: SizedBox(
                         width: 45,

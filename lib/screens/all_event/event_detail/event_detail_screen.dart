@@ -1,11 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:get/get.dart';
 import '../../../controllers/event details/event_detail_controller.dart';
 import '../../../controllers/tab/tab_screen_controller.dart';
-import '../../../utils/login_checker/login_checker.dart';
 import '../../../widgets/custom_button/cutsomButton.dart';
 import '../../../config/colors_path_provider/colors.dart';
 import '../../../config/image_path_provider/image_path_provider.dart';
@@ -30,7 +28,7 @@ class EventDetailScreen extends StatefulWidget {
 final eventDetailsController = Get.put(EventDetailsController());
 
 class _EventDetailScreenState extends State<EventDetailScreen> {
-  Completer<GoogleMapController> _controller = Completer();
+  final Completer<GoogleMapController> _controller = Completer();
   BitmapDescriptor? _markerIcon;
   LatLng? _kMapCenter;
   CameraPosition? _kGooglePlex;
@@ -52,8 +50,10 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
     print("-----------------2");
 
     // eventDetails = eventDetailsController.eventDetails;
-    double latitude = double.parse(eventDetailsController.eventDetails['latitude'].toString());
-    double longitude = double.parse(eventDetailsController.eventDetails['longitude'].toString());
+    double latitude = double.parse(
+        eventDetailsController.eventDetails['latitude'].toString());
+    double longitude = double.parse(
+        eventDetailsController.eventDetails['longitude'].toString());
     _kMapCenter = LatLng(latitude, longitude);
     _kGooglePlex = CameraPosition(
       target: _kMapCenter!,
@@ -91,128 +91,180 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                     children: [
                       /// Background Layout
                       backgroundLayout(
-                          imagePath: eventDetailsController.eventDetails['eventImagesResponses'][0]['image']),
+                          imagePath: eventDetailsController
+                                  .eventDetails['eventImagesResponses'][0]
+                              ['image']),
 
                       ///Data view
                       Positioned(
                         top: Get.height / 2.8,
-                        child: Container(
+                        child: SizedBox(
                           width: Get.width,
                           height: Get.height -
                               ((Get.height / 2.8) +
                                   90 -
-                                  (eventDetailsController.eventDetails['isJoinedMember'] == true ? 60 : 0)),
+                                  (eventDetailsController
+                                              .eventDetails['isJoinedMember'] ==
+                                          true
+                                      ? 60
+                                      : 0)),
                           // color: AppColor.fontColor,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
                             child: SingleChildScrollView(
-                              controller: eventDetailsController.scrollController,
-                              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                Text(
-                                  eventDetailsController.eventDetails['eventName'],
-                                  style: regular600.copyWith(
-                                    fontSize: 22,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                                Row(
+                              controller:
+                                  eventDetailsController.scrollController,
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    calenderRowWidget(
-                                        dateTime: eventDetailsController.eventDetails['eventDate']),
-                                    Container(
-                                        margin: const EdgeInsets.symmetric(horizontal: 15),
-                                        child: clockRowWidget(
-                                            time: eventDetailsController.eventDetails['eventTime']))
-                                  ],
-                                ),
-
-                                if (eventDetailsController.eventDetails['isJoinedMember'] ?? false)
-                                  youAlreadyGoingWidget(),
-                                if (eventDetailsController.eventDetails['isJoinedMember'] ?? false)
-                                  qrView(image: eventDetailsController.eventDetails['qrCodeLocation']),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 20.0, bottom: 10),
-                                  child: titleText("Event description", fontSize: 16),
-                                ),
-
-                                ///Description HTML View
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 0.0, bottom: 20),
-                                  child: HtmlView(text: eventDetailsController.eventDetails['eventDetails']),
-                                ),
-
-                                /// Participants Row
-                                participantRow(count: eventDetailsController.eventDetails['participants']),
-
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 20.0, bottom: 10),
-                                  child: titleText("Location", fontSize: 16),
-                                ),
-                                locationRowWidget(
-                                    locationName: eventDetailsController.eventDetails['location']),
-
-                                /// Map view
-                                if (_kMapCenter == null)
-                                  const SizedBox(
-                                    height: 16,
-                                  ),
-                                if (_kMapCenter != null)
-                                  Container(
-                                    margin: const EdgeInsets.symmetric(vertical: 10),
-                                    height: 214,
-                                    decoration: BoxDecoration(
-                                      // color: AppColor.red.withOpacity(0.09),
-                                      borderRadius: circularBorder(radius: 10),
+                                    Text(
+                                      eventDetailsController
+                                          .eventDetails['eventName'],
+                                      style: regular600.copyWith(
+                                        fontSize: 22,
+                                      ),
                                     ),
-                                    width: Get.width,
-                                    child: GestureDetector(
-                                      onTap: () async {
-                                        print("----*****");
-                                        try {
-                                          var availableMaps = await mapLauncher.MapLauncher.installedMaps;
-                                          await availableMaps.first.showMarker(
-                                            coords: mapLauncher.Coords(
-                                                _kMapCenter!.latitude, _kMapCenter!.longitude),
-                                            title: eventDetailsController.eventDetails['location'],
-                                          );
-                                        } catch (e) {
-                                          Print("--$e");
-                                        }
-                                      },
-                                      child: ClipRRect(
-                                        borderRadius: circularBorder(radius: 10),
-                                        child: GoogleMap(
-                                          mapType: MapType.normal,
-                                          initialCameraPosition: _kGooglePlex ??
-                                              const CameraPosition(
-                                                target: LatLng(0.00, 0.00),
-                                                zoom: 17.0,
-                                              ),
-                                          onMapCreated: (GoogleMapController controller) {
-                                            _controller.complete(controller);
-                                          },
-                                          onTap: (LatLng) async {
-                                            debugPrint("-----@@@@@@@@");
+                                    const SizedBox(
+                                      height: 16,
+                                    ),
+                                    Row(
+                                      children: [
+                                        calenderRowWidget(
+                                            dateTime: eventDetailsController
+                                                .eventDetails['eventDate']),
+                                        Container(
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 15),
+                                            child: clockRowWidget(
+                                                time: eventDetailsController
+                                                    .eventDetails['eventTime']))
+                                      ],
+                                    ),
+
+                                    if (eventDetailsController
+                                            .eventDetails['isJoinedMember'] ??
+                                        false)
+                                      youAlreadyGoingWidget(),
+                                    if (eventDetailsController
+                                            .eventDetails['isJoinedMember'] ??
+                                        false)
+                                      qrView(
+                                          image: eventDetailsController
+                                              .eventDetails['qrCodeLocation']),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 20.0, bottom: 10),
+                                      child: titleText("Event description",
+                                          fontSize: 16),
+                                    ),
+
+                                    ///Description HTML View
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 0.0, bottom: 20),
+                                      child: HtmlView(
+                                          text: eventDetailsController
+                                              .eventDetails['eventDetails']),
+                                    ),
+
+                                    /// Participants Row
+                                    participantRow(
+                                        count: eventDetailsController
+                                            .eventDetails['participants']),
+
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 20.0, bottom: 10),
+                                      child:
+                                          titleText("Location", fontSize: 16),
+                                    ),
+                                    locationRowWidget(
+                                        locationName: eventDetailsController
+                                            .eventDetails['location']),
+
+                                    /// Map view
+                                    if (_kMapCenter == null)
+                                      const SizedBox(
+                                        height: 16,
+                                      ),
+                                    if (_kMapCenter != null)
+                                      Container(
+                                        margin: const EdgeInsets.symmetric(
+                                            vertical: 10),
+                                        height: 214,
+                                        decoration: BoxDecoration(
+                                          // color: AppColor.red.withOpacity(0.09),
+                                          borderRadius:
+                                              circularBorder(radius: 10),
+                                        ),
+                                        width: Get.width,
+                                        child: GestureDetector(
+                                          onTap: () async {
+                                            print("----*****");
                                             try {
-                                              var availableMaps = await mapLauncher.MapLauncher.installedMaps;
-                                              await availableMaps.first.showMarker(
+                                              var availableMaps =
+                                                  await mapLauncher.MapLauncher
+                                                      .installedMaps;
+                                              await availableMaps.first
+                                                  .showMarker(
                                                 coords: mapLauncher.Coords(
-                                                    _kMapCenter!.latitude, _kMapCenter!.longitude),
-                                                title: eventDetailsController.eventDetails['location'],
-                                                // title: "Ocean Beach",
+                                                    _kMapCenter!.latitude,
+                                                    _kMapCenter!.longitude),
+                                                title: eventDetailsController
+                                                    .eventDetails['location'],
                                               );
                                             } catch (e) {
                                               Print("--$e");
                                             }
                                           },
-                                          markers: <Marker>{_createMarker()},
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                circularBorder(radius: 10),
+                                            child: GoogleMap(
+                                              mapType: MapType.normal,
+                                              initialCameraPosition:
+                                                  _kGooglePlex ??
+                                                      const CameraPosition(
+                                                        target:
+                                                            LatLng(0.00, 0.00),
+                                                        zoom: 17.0,
+                                                      ),
+                                              onMapCreated: (GoogleMapController
+                                                  controller) {
+                                                _controller
+                                                    .complete(controller);
+                                              },
+                                              onTap: (LatLng) async {
+                                                debugPrint("-----@@@@@@@@");
+                                                try {
+                                                  var availableMaps =
+                                                      await mapLauncher
+                                                          .MapLauncher
+                                                          .installedMaps;
+                                                  await availableMaps.first
+                                                      .showMarker(
+                                                    coords: mapLauncher.Coords(
+                                                        _kMapCenter!.latitude,
+                                                        _kMapCenter!.longitude),
+                                                    title:
+                                                        eventDetailsController
+                                                                .eventDetails[
+                                                            'location'],
+                                                    // title: "Ocean Beach",
+                                                  );
+                                                } catch (e) {
+                                                  Print("--$e");
+                                                }
+                                              },
+                                              markers: <Marker>{
+                                                _createMarker()
+                                              },
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                  )
-                              ]),
+                                      )
+                                  ]),
                             ),
                           ),
                         ),
@@ -224,14 +276,17 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                         // right: 16,
                         child: eventScreenAppBar(
                           index: widget.eventId,
-                          isLiked: eventDetailsController.eventDetails['isWished'],
+                          isLiked:
+                              eventDetailsController.eventDetails['isWished'],
                           onTapOfLike: () async {
                             if (Get.find<TabScreenController>().isLogin.value) {
                               eventDetailsController.eventDetails['isWished'] =
-                                  !eventDetailsController.eventDetails['isWished'];
+                                  !eventDetailsController
+                                      .eventDetails['isWished'];
                               eventDetailsController.eventListHome.refresh();
                               eventDetailsController.eventListAll.refresh();
-                              eventDetailsController.addToWishListEvents(eventId: widget.eventId);
+                              eventDetailsController.addToWishListEvents(
+                                  eventId: widget.eventId);
                             } else {
                               Get.to(const LoginScreen());
                             }
@@ -241,13 +296,19 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                     ],
                   ),
                 ),
-                floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-                floatingActionButton: eventDetailsController.eventDetails['isJoinedMember'] == false
+                floatingActionButtonLocation:
+                    FloatingActionButtonLocation.centerDocked,
+                floatingActionButton: eventDetailsController
+                            .eventDetails['isJoinedMember'] ==
+                        false
                     ? FloatingActionButton.extended(
                         label: Container(
                           color: AppColor.green.withOpacity(0.5),
                           child: const CustomButton(
-                              text: 'Join Now', borderRadiusChange: true, newRadius: 0, isMarginZero: true),
+                              text: 'Join Now',
+                              borderRadiusChange: true,
+                              newRadius: 0,
+                              isMarginZero: true),
                         ),
                         onPressed: () async {
                           if (Get.find<TabScreenController>().isLogin.value) {
@@ -257,10 +318,13 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                             )
                                 .whenComplete(() {
                               setState(() {
-                                eventDetailsController.scrollController.animateTo(
-                                    eventDetailsController.scrollController.position.minScrollExtent,
-                                    duration: const Duration(milliseconds: 500),
-                                    curve: Curves.ease);
+                                eventDetailsController.scrollController
+                                    .animateTo(
+                                        eventDetailsController.scrollController
+                                            .position.minScrollExtent,
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                        curve: Curves.ease);
                               });
                             });
                           } else {
@@ -280,7 +344,9 @@ Widget youAlreadyGoingWidget({String? title}) {
     height: 40,
     width: Get.width,
     margin: const EdgeInsets.only(top: 20, bottom: 16),
-    decoration: BoxDecoration(color: AppColor.darkBlueColor, borderRadius: circularBorder(radius: 10)),
+    decoration: BoxDecoration(
+        color: AppColor.darkBlueColor,
+        borderRadius: circularBorder(radius: 10)),
     child: Row(children: [
       Container(
           margin: const EdgeInsets.only(left: 10, right: 6),
@@ -289,7 +355,8 @@ Widget youAlreadyGoingWidget({String? title}) {
           )),
       Text(
         title ?? "You are already going",
-        style: regular600.copyWith(fontSize: 16, color: AppColor.blueColor.withOpacity(0.8)),
+        style: regular600.copyWith(
+            fontSize: 16, color: AppColor.blueColor.withOpacity(0.8)),
       )
     ]),
   );
@@ -305,7 +372,7 @@ Widget qrView({required String image}) {
         borderRadius: circularBorder(radius: 10),
         border: Border.all(color: AppColor.border)),
     child: Container(
-        margin: EdgeInsets.all(19),
+        margin: const EdgeInsets.all(19),
         child: Image.network(
           image,
         )),
@@ -324,7 +391,7 @@ Widget bgThemeWidget({bool isMemberGroupScreen = false}) {
         Positioned(
           right: -35,
           top: 10,
-          child: Container(
+          child: SizedBox(
               height: 109.5,
               // width: Get.width,
               child: SvgPicture.asset(
@@ -334,7 +401,7 @@ Widget bgThemeWidget({bool isMemberGroupScreen = false}) {
         ),
         Positioned(
           left: 0,
-          child: Container(
+          child: SizedBox(
               width: Get.width / 1.1,
               height: 150,
               child: Image.asset(
@@ -409,7 +476,7 @@ Widget eventScreenAppBar({
 }) {
   return Container(
       // color: Colors.blue,
-      margin: EdgeInsets.symmetric(horizontal: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 8),
       width: Get.width - 16,
       // height: 100,
       child: Row(
@@ -419,37 +486,43 @@ Widget eventScreenAppBar({
               onTap: () {
                 Get.back();
               },
-              child: SizedBox(height: 36, width: 36, child: SvgPicture.asset(ImagePath.arrow_back_field))),
+              child: SizedBox(
+                  height: 36,
+                  width: 36,
+                  child: SvgPicture.asset(ImagePath.arrow_back_field))),
           if (showLikeButton)
             GestureDetector(
               onTap: onTapOfLike,
               child: SizedBox(
                 height: 36,
                 width: 36,
-                child:isLiked==true?
-                CircleAvatar(
-                  backgroundColor: AppColor.blackColor,
-                  child: ShaderMask(
-                    shaderCallback: (bounds) {
-                      return  const RadialGradient(
-                        center: Alignment.topLeft,
-                        radius: 0.5,
-                        colors: [ AppColor.gradientOrange,AppColor.yellowColor,],
-                        tileMode: TileMode.mirror,
-                      ).createShader(bounds);
-                    },
-                    child: SvgPicture.asset(ImagePath.fav_fill_outlined),
-                  ),
-                  // radius: 20,
-                )
+                child: isLiked == true
+                    ? CircleAvatar(
+                        backgroundColor: AppColor.blackColor,
+                        child: ShaderMask(
+                          shaderCallback: (bounds) {
+                            return const RadialGradient(
+                              center: Alignment.topLeft,
+                              radius: 0.5,
+                              colors: [
+                                AppColor.gradientOrange,
+                                AppColor.yellowColor,
+                              ],
+                              tileMode: TileMode.mirror,
+                            ).createShader(bounds);
+                          },
+                          child: SvgPicture.asset(ImagePath.fav_fill_outlined),
+                        ),
+                        // radius: 20,
+                      )
                     : Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    SvgPicture.asset(ImagePath.circle_border),
-                     SvgPicture.asset(ImagePath.favorite_unselected,
-                            color: AppColor.primary, width: 16.67),
-                  ],
-                ),
+                        alignment: Alignment.center,
+                        children: [
+                          SvgPicture.asset(ImagePath.circle_border),
+                          SvgPicture.asset(ImagePath.favorite_unselected,
+                              color: AppColor.primary, width: 16.67),
+                        ],
+                      ),
               ),
             ),
         ],
@@ -463,11 +536,14 @@ Widget backgroundLayout({required String imagePath}) {
       ///image view
       Positioned(
         top: 0,
-        child: Container(
+        child: SizedBox(
           // color: Colors.green,
           height: Get.height / 2.8,
           width: Get.width,
-          child: Image.network(imagePath, fit: BoxFit.cover),
+          child: Image.network(
+            imagePath,
+            fit: BoxFit.contain,
+          ),
         ),
       ),
 

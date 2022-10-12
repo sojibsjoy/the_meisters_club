@@ -13,7 +13,6 @@ import '../all_event/event_detail/event_detail_screen.dart';
 import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class WatchOfferDetailScreen extends StatefulWidget {
   final int productId;
 
@@ -33,7 +32,6 @@ class _WatchOfferDetailScreenState extends State<WatchOfferDetailScreen> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -48,79 +46,111 @@ class _WatchOfferDetailScreenState extends State<WatchOfferDetailScreen> {
                     children: [
                       /// Background Layout
                       backgroundLayout(
-                          imagePath: productController.productDetailsMap
-                              ['bannerImage']),
+                        imagePath:
+                            productController.productDetailsMap['bannerImage'],
+                      ),
 
                       ///Data view
                       Positioned(
                         top: Get.height / 2.8,
-                        child: Container(
+                        child: SizedBox(
                           width: Get.width,
                           height: Get.height - ((Get.height / 2.8) + 90),
                           // color: AppColor.fontColor,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
                             child: SingleChildScrollView(
-                              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                Text(
-                                  productController.productDetailsMap
-                                          ['tittle'] ??
-                                      "",
-                                  style: regular600.copyWith(
-                                    fontSize: 20,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                                Text(
-                                  "\$ ${productController.productDetailsMap['price'] ?? ""}",
-                                  style: regular400.copyWith(fontSize: 16, color: AppColor.fontColor),
-                                ),
-                                // const SizedBox(
-                                //   height: 16,
-                                // ),
-                                // ratingRowWidget(),
-                                watchLabel(link:productController.productDetailsMap
-                                ['redirectLink']??""),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 20.0, bottom: 10),
-                                  child: titleText("Product Description", fontSize: 16),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 0.0, bottom: 20),
-                                  child: Text(
-                                    productController.productDetailsMap
-                                            ['description'] ??
-                                        "",
-                                    style: regular400.copyWith(fontSize: 14, color: AppColor.subFontColor),
-                                  ),
-                                ),
-                                productController.productDetailsMap['productImagesResponses']!=null?
-                                GridView.count(
-                                  scrollDirection: Axis.vertical,           //default
-                                  reverse: false,                           //default
-                                  controller: ScrollController(),
-                                  primary: false,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                addAutomaticKeepAlives: true,             //default
-                                addRepaintBoundaries: true,               //default
-                                addSemanticIndexes: true,                 //default
-                                semanticChildCount: 0,
-                                cacheExtent: 0.0,
-                                // dragStartBehavior: DragStartBehavior.start,
-                                clipBehavior: Clip.hardEdge,
-                                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
-                                crossAxisCount: 3,
-                                children: List.generate(productController.productDetailsMap['productImagesResponses'].length, (index) {
-                                  return recommendedWatchWidget(image:productController.productDetailsMap['productImagesResponses'][index]['image']);
-                                }) // List of Widgets
-                            ):Container(),
-                                const SizedBox(
-                                  height: 12,
-                                )
-                              ]),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      productController
+                                              .productDetailsMap['tittle'] ??
+                                          "",
+                                      style: regular600.copyWith(
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 16,
+                                    ),
+                                    Text(
+                                      "\$ ${productController.productDetailsMap['price'] ?? ""}",
+                                      style: regular400.copyWith(
+                                          fontSize: 16,
+                                          color: AppColor.fontColor),
+                                    ),
+                                    // const SizedBox(
+                                    //   height: 16,
+                                    // ),
+                                    // ratingRowWidget(),
+                                    watchLabel(
+                                        link:
+                                            productController.productDetailsMap[
+                                                    'redirectLink'] ??
+                                                ""),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 20.0, bottom: 10),
+                                      child: titleText("Product Description",
+                                          fontSize: 16),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 0.0, bottom: 20),
+                                      child: Text(
+                                        productController.productDetailsMap[
+                                                'description'] ??
+                                            "",
+                                        textAlign: TextAlign.justify,
+                                        style: regular400.copyWith(
+                                            fontSize: 14,
+                                            color: AppColor.subFontColor),
+                                      ),
+                                    ),
+                                    productController.productDetailsMap[
+                                                'productImagesResponses'] !=
+                                            null
+                                        ? GridView.count(
+                                            scrollDirection:
+                                                Axis.vertical, //default
+                                            reverse: false, //default
+                                            controller: ScrollController(),
+                                            primary: false,
+                                            physics:
+                                                const NeverScrollableScrollPhysics(),
+                                            shrinkWrap: true,
+                                            addAutomaticKeepAlives:
+                                                true, //default
+                                            addRepaintBoundaries:
+                                                true, //default
+                                            addSemanticIndexes: true, //default
+                                            semanticChildCount: 0,
+                                            cacheExtent: 0.0,
+                                            // dragStartBehavior: DragStartBehavior.start,
+                                            clipBehavior: Clip.hardEdge,
+                                            keyboardDismissBehavior:
+                                                ScrollViewKeyboardDismissBehavior
+                                                    .manual,
+                                            crossAxisCount: 3,
+                                            children: List.generate(
+                                                productController
+                                                    .productDetailsMap[
+                                                        'productImagesResponses']
+                                                    .length, (index) {
+                                              return recommendedWatchWidget(
+                                                  image: productController
+                                                              .productDetailsMap[
+                                                          'productImagesResponses']
+                                                      [index]['image']);
+                                            }) // List of Widgets
+                                            )
+                                        : Container(),
+                                    const SizedBox(
+                                      height: 12,
+                                    )
+                                  ]),
                             ),
                           ),
                         ),
@@ -135,57 +165,66 @@ class _WatchOfferDetailScreenState extends State<WatchOfferDetailScreen> {
                     ],
                   ),
                 ),
-                floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+                floatingActionButtonLocation:
+                    FloatingActionButtonLocation.centerDocked,
                 floatingActionButton: FloatingActionButton.extended(
                     backgroundColor: AppColor.accent,
                     label: const CustomButton(
-                        text: 'Contact Now', borderRadiusChange: true, newRadius: 0, isMarginZero: true),
-                    onPressed: () async{
-                      UrlLauncher.launchLink(productController.productDetailsMap['redirectLink']??"");
-
+                        text: 'Contact Now',
+                        borderRadiusChange: true,
+                        newRadius: 0,
+                        isMarginZero: true),
+                    onPressed: () async {
+                      UrlLauncher.launchLink(
+                          productController.productDetailsMap['redirectLink'] ??
+                              "");
                     }),
               )
             : Container();
       }),
     );
   }
+
   Widget watchLabel({required String link}) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         UrlLauncher.launchLink(link);
-      },child: Container(
+      },
+      child: Container(
         height: 57,
         width: Get.width,
         margin: const EdgeInsets.only(top: 20, bottom: 4),
-        decoration: BoxDecoration(color: AppColor.border, borderRadius: circularBorder(radius: 10)),
+        decoration: BoxDecoration(
+            color: AppColor.border, borderRadius: circularBorder(radius: 10)),
         child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 16), child: Image.asset(ImagePath.watch_label))),
+          margin: const EdgeInsets.symmetric(horizontal: 16),
+          child: Image.asset(
+            ImagePath.watch_label,
+          ),
+        ),
+      ),
     );
   }
 }
 
-
-
 Widget recommendedWatchWidget({required String image}) {
   return
-    // Row(
-    // children: [
-    //   for (int i = 0; i < images.length; i++)
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 5),
-          child: ClipRRect(
-            borderRadius: circularBorder(radius: 5),
-            child: Container(
-                width: Get.width / 3.65,
-                height: Get.width / 3,
-                child: Image.network(
-                  image,
-                  fit: BoxFit.cover,
-                )),
-          ),
-        );
+      // Row(
+      // children: [
+      //   for (int i = 0; i < images.length; i++)
+      Container(
+    margin: const EdgeInsets.symmetric(horizontal: 5),
+    child: ClipRRect(
+      borderRadius: circularBorder(radius: 5),
+      child: SizedBox(
+          width: Get.width / 3.65,
+          height: Get.width / 3,
+          child: Image.network(
+            image,
+            fit: BoxFit.cover,
+          )),
+    ),
+  );
   //   ],
   // );
 }
-
-

@@ -28,20 +28,22 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
   }
 
-  initData()async{
-   // String videoLink= await splashScreenController.getFrontVideoLink()??"";
-   // print("############## $videoLink -----------");
-   _controller =
-   VideoPlayerController.asset("assets/video/frontVideo.mp4")
-     ..initialize().then((_) {
-       setState(() {});
-       _controller?.play();
-     });
+  initData() async {
+    // String videoLink= await splashScreenController.getFrontVideoLink()??"";
+    // print("############## $videoLink -----------");
+    _controller = VideoPlayerController.asset(
+      "assets/video/frontVideo.mp4",
+    )..initialize().then((_) {
+        setState(() {});
+        _controller?.play();
+      });
 
-
-    Timer(const Duration(seconds: 8),() {
-      checkLogin();
-    },);
+    Timer(
+      const Duration(seconds: 8),
+      () {
+        checkLogin();
+      },
+    );
   }
 
   @override
@@ -51,11 +53,13 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future checkLogin() async {
-    bool isLog =
-        await getDataFromLocalStorage(dataType: StorageKey.boolType, storageKey: StorageKey.isLogin) ?? false;
-    String colorDiamond =
-        await getDataFromLocalStorage(dataType: StorageKey.stringType, storageKey: StorageKey.packageColor) ??
-            "";
+    bool isLog = await getDataFromLocalStorage(
+            dataType: StorageKey.boolType, storageKey: StorageKey.isLogin) ??
+        false;
+    String colorDiamond = await getDataFromLocalStorage(
+            dataType: StorageKey.stringType,
+            storageKey: StorageKey.packageColor) ??
+        "";
     Get.find<TabScreenController>().isLogin.value = isLog;
     Get.find<TabScreenController>().diamondColorString.value = colorDiamond;
     Get.offAll(() => const TabScreen());
@@ -71,12 +75,19 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           backgroundThemeWidgetSplashScreen(),
           if (_controller != null)
-          _controller!.value.isInitialized
-              ? AspectRatio(
-                  aspectRatio: _controller!.value.aspectRatio,
-                  child: VideoPlayer(_controller!),
-                )
-              : Container(),
+            _controller!.value.isInitialized
+                ? Container(
+                    // color: Colors.pink,
+                    // padding: const EdgeInsets.all(5),
+                    child: AspectRatio(
+                      aspectRatio: 1.5,
+                      // aspectRatio: _controller!.value.aspectRatio,
+                      child: VideoPlayer(
+                        _controller!,
+                      ),
+                    ),
+                  )
+                : Container(),
         ],
       ),
     );
@@ -94,8 +105,10 @@ Widget backgroundThemeWidgetSplashScreen({
       Align(
         alignment: Alignment.topRight,
         child: isFirstVisible
-            ? Container(
-                height: isOtherScreen ? (Get.height - 60) / 1.44 : Get.height / 1.44,
+            ? SizedBox(
+                height: isOtherScreen
+                    ? (Get.height - 60) / 1.44
+                    : Get.height / 1.44,
                 child: Stack(
                   alignment: Alignment.topRight,
                   children: [
@@ -111,8 +124,10 @@ Widget backgroundThemeWidgetSplashScreen({
       Align(
         alignment: Alignment.bottomLeft,
         child: isSecondVisible
-            ? Container(
-                height: isOtherScreen ? (Get.height - 60) / 4.87 : Get.height / 4.87,
+            ? SizedBox(
+                height: isOtherScreen
+                    ? (Get.height - 60) / 4.87
+                    : Get.height / 4.87,
                 child: Image.asset(ImagePath.bottomLayer, fit: BoxFit.cover))
             : Container(),
       ),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -8,7 +7,6 @@ import '../../config/image_path_provider/image_path_provider.dart';
 import '../../config/text_style_path_provider/text_style.dart';
 import '../../controllers/profile/profile_controller.dart';
 import '../../controllers/tab/tab_screen_controller.dart';
-import '../../utils/login_checker/login_checker.dart';
 import '../../widgets/common_widgets/common_widgets.dart';
 import '../../widgets/custom_button/cutsomButton.dart';
 import '../../widgets/text_field/customTextField.dart';
@@ -80,7 +78,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       bottom: 0,
                                       child: Stack(
                                         children: [
-                                          Container(
+                                          SizedBox(
                                             height: 70,
                                             width: Get.width,
                                             child: Row(
@@ -102,14 +100,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 ),
                                                 Container(
                                                   height: 48,
-                                                  margin: EdgeInsets.symmetric(
-                                                      horizontal: 8),
+                                                  margin: const EdgeInsets
+                                                      .symmetric(horizontal: 8),
                                                   child: Column(
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      Container(
+                                                      SizedBox(
                                                         width: Get.width - 145,
                                                         // color: AppColor.red,
                                                         child: Row(
@@ -117,7 +115,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                               MainAxisAlignment
                                                                   .start,
                                                           children: [
-                                                            Container(
+                                                            SizedBox(
                                                               width: Get.width -
                                                                   (widget.isEditProfile
                                                                       ? 180
@@ -144,7 +142,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                           ],
                                                         ),
                                                       ),
-                                                      Container(
+                                                      SizedBox(
                                                         width: Get.width - 145,
                                                         child: subTitleText(
                                                             profileController
@@ -155,13 +153,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                     ],
                                                   ),
                                                 ),
-                                                Spacer(),
-                                                Container(
-                                                    margin:
-                                                        const EdgeInsets.only(
-                                                            right: 8),
-                                                    child:
-                                                        diamondWithColorWidget())
+                                                const Spacer(),
+                                                // Container(
+                                                //   margin: const EdgeInsets.only(
+                                                //       right: 8),
+                                                //   child:
+                                                //       diamondWithColorWidget(),
+                                                // ),
                                               ],
                                             ),
                                           ),
@@ -250,7 +248,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Padding(
                               padding: horizontalPadding,
                               child: Text(
-                                "${profileController.profileDetailsMap['name'] ?? " "} Attend events",
+                                // "${profileController.profileDetailsMap['name'] ?? " "} Attend events",
+                                'My Events',
                                 style: regular700.copyWith(fontSize: 20),
                               ),
                             ),
@@ -444,7 +443,7 @@ class _PopUpProfileUpdateState extends State<PopUpProfileUpdate> {
                           validationMessage: "Please enter full name",
                           inputType: TextInputType.text,
                           hintText: "Full Name",
-                          limit: [],
+                          limit: const [],
                           capitalization: TextCapitalization.none,
                         ),
                       ),
@@ -457,7 +456,7 @@ class _PopUpProfileUpdateState extends State<PopUpProfileUpdate> {
                           validationMessage: "Please enter About",
                           inputType: TextInputType.multiline,
                           hintText: "About",
-                          limit: [],
+                          limit: const [],
                           capitalization: TextCapitalization.none,
                         ),
                       ),
