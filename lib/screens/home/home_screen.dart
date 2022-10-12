@@ -306,8 +306,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ? Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 8.0, vertical: 11),
-                                      child:
-                                          labelRow("News & Updates", onTap: () {
+                                      child: labelRow("Partners", onTap: () {
                                         Print("see All");
                                         Get.to(() => const NewsListScreen());
                                       }),
@@ -322,7 +321,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           .newsListHome.length,
                                       // scrollDirection: Axis.horizontal,
                                       itemBuilder: ((context, index) {
-                                        return newsAndUpdateWidget(
+                                        return partnersWidget(
                                           index: index,
                                           isAllNews: false,
                                           title: newsAndUpdateController
@@ -362,20 +361,21 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 Widget slider() {
-  return Obx(() {
-    return GestureDetector(
-      onTap: () {
-        if (Get.find<TabScreenController>().isLogin.value) {
-          Get.to(() => WatchOfferDetailScreen(
-                productId: productController
-                        .productList[productController.sliderIndex.value]
-                    ['productId'],
-              ));
-        } else {
-          Get.to(() => const LoginScreen());
-        }
-      },
-      child: Container(
+  return Obx(
+    () {
+      return GestureDetector(
+        onTap: () {
+          if (Get.find<TabScreenController>().isLogin.value) {
+            Get.to(() => WatchOfferDetailScreen(
+                  productId: productController
+                          .productList[productController.sliderIndex.value]
+                      ['productId'],
+                ));
+          } else {
+            Get.to(() => const LoginScreen());
+          }
+        },
+        child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 8),
           // color: AppColor.green.withOpacity(0.5),
           child: Stack(
@@ -397,56 +397,57 @@ Widget slider() {
                         AppColor.gradientYellow,
                       ],
                     )),
-                child: Row(children: [
-                  Container(
-                    width: Get.width / 2,
-                    // height: 185,
-                    // color: AppColor.red,
-                    margin: const EdgeInsets.all(15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        titleText(
-                            productController.productList[productController
-                                    .sliderIndex.value]['tittle'] ??
-                                "",
-                            fontSize: 20,
-                            isSecondLine: true),
-                        const SizedBox(
-                          height: 6,
-                        ),
-                        subTitleText(
-                            productController.productList[productController
-                                    .sliderIndex.value]['description'] ??
-                                "",
-                            fontSize: 14),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: circularBorder(radius: 5),
-                            border: Border.all(
-                              color: AppColor.fontColor.withOpacity(0.7),
+                child: Row(
+                  children: [
+                    Container(
+                      width: Get.width / 2,
+                      // height: 185,
+                      // color: AppColor.red,
+                      margin: const EdgeInsets.all(15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          titleText(
+                              productController.productList[productController
+                                      .sliderIndex.value]['tittle'] ??
+                                  "",
+                              fontSize: 20,
+                              isSecondLine: true),
+                          const SizedBox(
+                            height: 6,
+                          ),
+                          subTitleText(
+                              productController.productList[productController
+                                      .sliderIndex.value]['description'] ??
+                                  "",
+                              fontSize: 14),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: circularBorder(radius: 5),
+                              border: Border.all(
+                                color: AppColor.fontColor.withOpacity(0.7),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 8.0, horizontal: 15),
+                              child: Text("View Details",
+                                  style: regular400.copyWith(fontSize: 12)),
                             ),
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 8.0, horizontal: 15),
-                            child: Text("View Details",
-                                style: regular400.copyWith(fontSize: 12)),
-                          ),
-                        ),
-                        const Spacer(),
-                        if (productController.sliderList.length > 1)
-                          SizedBox(
-                            height: 15,
-                            width: 150,
-                            // color: AppColor.green,
-                            child: /*Text("${sliderList!.length}"),*/
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
+                          const Spacer(),
+                          if (productController.sliderList.length > 1)
+                            SizedBox(
+                              height: 15,
+                              width: 150,
+                              // color: AppColor.green,
+                              child: /*Text("${sliderList!.length}"),*/
+                                  Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
                                   for (int i = 0;
                                       i < productController.sliderList.length;
                                       i++)
@@ -461,24 +462,37 @@ Widget slider() {
                                       height: 5.0,
                                       // margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
                                       decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          color: Colors.white.withOpacity(
-                                              productController
-                                                          .sliderIndex.value ==
-                                                      i
-                                                  ? 1
-                                                  : 0.6)),
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: Colors.white.withOpacity(
+                                          productController.sliderIndex.value ==
+                                                  i
+                                              ? 1
+                                              : 0.6,
+                                        ),
+                                      ),
                                     )
-                                ]),
-                          )
-                      ],
+                                ],
+                              ),
+                            ),
+                        ],
+                      ),
                     ),
+                    const Expanded(
+                      child: SizedBox(),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                top: 15,
+                left: 35,
+                child: SizedBox(
+                  width: 130,
+                  child: SvgPicture.asset(
+                    ImagePath.logo_icon,
+                    color: AppColor.fontColor.withOpacity(0.4),
                   ),
-                  const Expanded(
-                    child: SizedBox(),
-                  )
-                ]),
+                ),
               ),
               Positioned(
                 right: 0,
@@ -489,17 +503,22 @@ Widget slider() {
                   // color: AppColor.red,
                   // width: Get.width,
 
-                  child: Stack(alignment: Alignment.centerRight, children: [
-                    Positioned(
-                        top: 25,
-                        right: 21,
-                        child: SizedBox(
-                            width: 130,
-                            child: SvgPicture.asset(
-                              ImagePath.logo_icon,
-                              color: AppColor.fontColor.withOpacity(0.4),
-                            ))),
-                    Positioned(
+                  child: Stack(
+                    alignment: Alignment.centerRight,
+                    children: [
+                      // Positioned(
+                      //   top: 5,
+                      //   left: 0,
+                      //   child: SizedBox(
+                      //     width: 130,
+                      //     child: SvgPicture.asset(
+                      //       ImagePath.logo_icon,
+                      //       color: Colors.pink,
+                      //       // color: AppColor.fontColor.withOpacity(0.4),
+                      //     ),
+                      //   ),
+                      // ),
+                      Positioned(
                         top: 0,
                         child: ClipRRect(
                           borderRadius: const BorderRadius.only(
@@ -507,21 +526,26 @@ Widget slider() {
                             bottomRight: Radius.circular(10),
                           ),
                           child: SizedBox(
-                              height: 175,
-                              child: Image.network(
-                                productController.productList[productController
-                                        .sliderIndex.value]['bannerImage'] ??
-                                    "",
-                                fit: BoxFit.fitHeight,
-                              )),
-                        )),
-                  ]),
+                            height: 175,
+                            child: Image.network(
+                              productController.productList[productController
+                                      .sliderIndex.value]['bannerImage'] ??
+                                  "",
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              )
+              ),
             ],
-          )),
-    );
-  });
+          ),
+        ),
+      );
+    },
+  );
 }
 
 Widget upComingEventsWidget({
@@ -732,11 +756,19 @@ Widget offerWidget({
       width: 170,
       margin: const EdgeInsets.symmetric(horizontal: 8),
       child: Stack(children: [
-        SizedBox(
+        Container(
           height: 200,
+          decoration: BoxDecoration(
+              border: Border.all(
+            color: Colors.grey,
+          )),
           child: ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child: Image.network(image, fit: BoxFit.cover)),
+            borderRadius: BorderRadius.circular(15),
+            child: Image.network(
+              image,
+              fit: BoxFit.contain,
+            ),
+          ),
         ),
         Positioned(
           bottom: 0,
@@ -923,7 +955,7 @@ Widget chatRoomWidget({
   );
 }
 
-Widget newsAndUpdateWidget({
+Widget partnersWidget({
   required int index,
   required bool isAllNews,
   required String imagePath,
@@ -959,6 +991,7 @@ Widget newsAndUpdateWidget({
           margin: const EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
                 title,
@@ -967,7 +1000,7 @@ Widget newsAndUpdateWidget({
                 style: regular700.copyWith(
                     color: AppColor.fontColor, fontSize: 18),
               ),
-              const Spacer(),
+              // const Spacer(),
               Text(
                 subTitle,
                 maxLines: 2,
@@ -975,23 +1008,23 @@ Widget newsAndUpdateWidget({
                 style: regular500.copyWith(
                     color: AppColor.subFontColor, fontSize: 12),
               ),
-              const Spacer(),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(ImagePath.calender),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    date,
-                    textAlign: TextAlign.right,
-                    overflow: TextOverflow.ellipsis,
-                    style: regular400.copyWith(
-                        color: AppColor.subFontColor, fontSize: 14),
-                  ),
-                ],
-              )
+              // const Spacer(),
+              // Row(
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     SvgPicture.asset(ImagePath.calender),
+              //     const SizedBox(
+              //       width: 5,
+              //     ),
+              //     Text(
+              //       date,
+              //       textAlign: TextAlign.right,
+              //       overflow: TextOverflow.ellipsis,
+              //       style: regular400.copyWith(
+              //           color: AppColor.subFontColor, fontSize: 14),
+              //     ),
+              //   ],
+              // )
             ],
           ),
         )

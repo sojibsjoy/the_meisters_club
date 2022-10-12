@@ -43,7 +43,8 @@ class _MenuScreenState extends State<MenuScreen> {
           padding: const EdgeInsets.all(8.0),
           child: Stack(
             children: [
-              backgroundThemeWidgetSplashScreen(isOtherScreen: true, isSecondVisible: false),
+              backgroundThemeWidgetSplashScreen(
+                  isOtherScreen: true, isSecondVisible: false),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 appBarMenuScreen(),
                 const SizedBox(
@@ -61,9 +62,19 @@ class _MenuScreenState extends State<MenuScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: titleText("Dashboard", fontSize: 22),
                         ),
-                        const SizedBox(
-                          height: 34,
+                        const SizedBox(height: 14),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Text(
+                            'Welcome to the 1% ' +
+                                profileController.profileDetailsMap['name'],
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
+                          ),
                         ),
+                        const SizedBox(height: 20),
                         menuItem(
                             title: "Profile",
                             imagePath: ImagePath.account_unselected,
@@ -116,9 +127,12 @@ class _MenuScreenState extends State<MenuScreen> {
                             onTap: () {
                               Get.to(() => const AboutUsScreen());
                             }),
-                        menuItem(title: "Quick Links", imagePath: ImagePath.link, onTap: () {
-                          Get.to(() => const QuickLinksScreen());
-                        }),
+                        menuItem(
+                            title: "Quick Links",
+                            imagePath: ImagePath.link,
+                            onTap: () {
+                              Get.to(() => const QuickLinksScreen());
+                            }),
                         const SizedBox(
                           height: 80,
                         )
@@ -131,8 +145,9 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton:
-            Get.find<TabScreenController>().isLogin.value ? menuProfileRowWidget() : Container(),
+        floatingActionButton: Get.find<TabScreenController>().isLogin.value
+            ? menuProfileRowWidget()
+            : Container(),
       );
     }));
   }
@@ -142,10 +157,11 @@ Widget divider() {
   return Container(
     height: 1,
     width: Get.width / 2,
-    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
     // color: AppColor.red,
     decoration: BoxDecoration(
-        gradient: linearGradientCustom(startColor: AppColor.fontColor, endColor: AppColor.background)),
+        gradient: linearGradientCustom(
+            startColor: AppColor.fontColor, endColor: AppColor.background)),
   );
 }
 
@@ -157,16 +173,20 @@ Widget menuItem({
   return GestureDetector(
     onTap: onTap,
     child: Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       child: Row(
         children: [
-          SizedBox(height: 20, width: 20, child: SvgPicture.asset(imagePath, color: AppColor.subFontColor)),
+          SizedBox(
+              height: 20,
+              width: 20,
+              child: SvgPicture.asset(imagePath, color: AppColor.subFontColor)),
           const SizedBox(
             width: 8,
           ),
           Text(
             title,
-            style: regular500.copyWith(fontSize: 15, color: AppColor.subFontColor),
+            style:
+                regular500.copyWith(fontSize: 15, color: AppColor.subFontColor),
           )
         ],
       ),
@@ -179,8 +199,8 @@ Widget menuProfileRowWidget() {
     return Container(
       height: 74,
       width: Get.width,
-      padding: EdgeInsets.all(16),
-      margin: EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
           color: AppColor.accent,
           borderRadius: circularBorder(radius: 10),
@@ -188,23 +208,25 @@ Widget menuProfileRowWidget() {
       child: Row(
         children: [
           profileWithBorder(
-            profileImage:
-                profileController.profileDetailsMap['image'] ?? ImagePath.profileNetImageUnknown,
+            profileImage: profileController.profileDetailsMap['image'] ??
+                ImagePath.profileNetImageUnknown,
             radius: 44,
           ),
           const SizedBox(
             width: 12,
           ),
-          Container(
+          SizedBox(
             // color: AppColor.red,
             height: 44,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                titleText(profileController.profileDetailsMap['name'], fontSize: 16),
+                titleText(profileController.profileDetailsMap['name'],
+                    fontSize: 16),
                 // Spacer(),
-                subTitleText(profileController.profileDetailsMap['email'], fontSize: 14)
+                subTitleText(profileController.profileDetailsMap['email'],
+                    fontSize: 14)
               ],
             ),
           ),
@@ -223,7 +245,9 @@ Widget menuProfileRowWidget() {
 }
 
 Widget profileWithBorder(
-    {required String profileImage, double radius = 44, Color? borderColor /*,bool isListLastImage=false,*/
+    {required String profileImage,
+    double radius = 44,
+    Color? borderColor /*,bool isListLastImage=false,*/
     }) {
   ///1.76
   return SizedBox(

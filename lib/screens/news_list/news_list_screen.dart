@@ -23,11 +23,11 @@ class _NewsListScreenState extends State<NewsListScreen> {
     super.initState();
   }
 
-  initApiCall(){
+  initApiCall() {
     newsAndUpdateController.getNewsAndUpdates(isHome: false);
   }
 
-  Future onRefresh()async{
+  Future onRefresh() async {
     initApiCall();
   }
 
@@ -35,43 +35,45 @@ class _NewsListScreenState extends State<NewsListScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          backgroundColor: AppColor.background,
-          body: Column(
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: appBarForNavigateScreen(title: "News & Updates"),
-              ),
-              const SizedBox(height: 4),
-              Obx(() {
-                return Expanded(
-                  child: RefreshIndicator(
-                    onRefresh: onRefresh,
-                    color: AppColor.pullToRefreshLoader,
-                    backgroundColor: AppColor.pullToRefreshBG,
-                    child: ListView.builder(
-                      // physics: const NeverScrollableScrollPhysics(),
-                      //   shrinkWrap: true,
-                        itemCount: newsAndUpdateController.newsListAll.length,
-                        itemBuilder: ((context, index) {
-                          return newsAndUpdateWidget(
-                            index: index,
-                            isAllNews: true,
-                            title: newsAndUpdateController.newsListAll[index]['eventName'],
-                            subTitle: parse(newsAndUpdateController.newsListAll[index]['eventDetails']).body!
-                                .text
-                            ,
-                            date: newsAndUpdateController.newsListAll[index]['eventDate'],
-                            imagePath: newsAndUpdateController
-                                .newsListAll[index]['eventImagesResponses'][0]['image'],
-                          );
-                        })),
-                  ),
-                );
-              }),
-            ],
+      backgroundColor: AppColor.background,
+      body: Column(
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: appBarForNavigateScreen(title: "News & Updates"),
           ),
-        ));
-    ;
+          const SizedBox(height: 4),
+          Obx(() {
+            return Expanded(
+              child: RefreshIndicator(
+                onRefresh: onRefresh,
+                color: AppColor.pullToRefreshLoader,
+                backgroundColor: AppColor.pullToRefreshBG,
+                child: ListView.builder(
+                    // physics: const NeverScrollableScrollPhysics(),
+                    //   shrinkWrap: true,
+                    itemCount: newsAndUpdateController.newsListAll.length,
+                    itemBuilder: ((context, index) {
+                      return partnersWidget(
+                        index: index,
+                        isAllNews: true,
+                        title: newsAndUpdateController.newsListAll[index]
+                            ['eventName'],
+                        subTitle: parse(newsAndUpdateController
+                                .newsListAll[index]['eventDetails'])
+                            .body!
+                            .text,
+                        date: newsAndUpdateController.newsListAll[index]
+                            ['eventDate'],
+                        imagePath: newsAndUpdateController.newsListAll[index]
+                            ['eventImagesResponses'][0]['image'],
+                      );
+                    })),
+              ),
+            );
+          }),
+        ],
+      ),
+    ));
   }
 }
