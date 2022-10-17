@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import '../../../controllers/event details/event_detail_controller.dart';
@@ -91,9 +92,9 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                     children: [
                       /// Background Layout
                       backgroundLayout(
-                          imagePath: eventDetailsController
-                                  .eventDetails['eventImagesResponses'][0]
-                              ['image']),
+                        imageList: eventDetailsController
+                            .eventDetails['eventImagesResponses'],
+                      ),
 
                       ///Data view
                       Positioned(
@@ -529,7 +530,7 @@ Widget eventScreenAppBar({
       ));
 }
 
-Widget backgroundLayout({required String imagePath}) {
+Widget backgroundLayout({required List<dynamic> imageList}) {
   return Stack(
     alignment: Alignment.center,
     children: [
@@ -540,9 +541,19 @@ Widget backgroundLayout({required String imagePath}) {
           // color: Colors.green,
           height: Get.height / 2.8,
           width: Get.width,
-          child: Image.network(
-            imagePath,
-            fit: BoxFit.contain,
+          child: ImageSlideshow(
+            initialPage: 0,
+            // indicatorColor: Colors.blue,
+            // indicatorBackgroundColor: Colors.grey,
+            // indicatorRadius: 15,
+            isLoop: true,
+            // onPageChanged: (value) => print(value),
+            children: imageList.map((item) {
+              return Image.network(
+                item['image'],
+                fit: BoxFit.fill,
+              );
+            }).toList(),
           ),
         ),
       ),

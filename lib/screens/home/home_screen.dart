@@ -135,9 +135,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       .eventListHome[index]
                                                   ['eventId'],
                                               image: eventDetailsController
-                                                          .eventListHome[index]
-                                                      ['eventImagesResponses']
-                                                  [0]['image'],
+                                                      .eventListHome[index]
+                                                  ['homeBanner'],
                                               title: eventDetailsController
                                                       .eventListHome[index]
                                                   ['eventName'],
@@ -336,8 +335,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               .newsListHome[index]['eventDate'],
                                           imagePath: newsAndUpdateController
                                                       .newsListHome[index]
-                                                  ['eventImagesResponses'][0]
-                                              ['image'],
+                                                  ['homeBanner'] ??
+                                              '',
                                         );
                                       }))
                                   : Container(),
@@ -484,10 +483,10 @@ Widget slider() {
                 ),
               ),
               Positioned(
-                top: 15,
-                left: 35,
+                top: 45,
+                left: (Get.width / 2) - 70,
                 child: SizedBox(
-                  width: 130,
+                  width: 80,
                   child: SvgPicture.asset(
                     ImagePath.logo_icon,
                     color: AppColor.fontColor.withOpacity(0.4),
@@ -610,7 +609,7 @@ Widget upComingEventsWidget({
                     borderRadius: BorderRadius.circular(10),
                     child: Image.network(
                       image,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     )),
               ),
               Container(
@@ -756,17 +755,17 @@ Widget offerWidget({
       width: 170,
       margin: const EdgeInsets.symmetric(horizontal: 8),
       child: Stack(children: [
-        Container(
+        SizedBox(
           height: 200,
-          decoration: BoxDecoration(
-              border: Border.all(
-            color: Colors.grey,
-          )),
+          // decoration: BoxDecoration(
+          //     border: Border.all(
+          //   color: Colors.grey,
+          // )),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(15),
             child: Image.network(
               image,
-              fit: BoxFit.contain,
+              fit: BoxFit.fill,
             ),
           ),
         ),
@@ -941,11 +940,12 @@ Widget chatRoomWidget({
               child: Padding(
                 padding: const EdgeInsets.all(14.0),
                 child: ClipRRect(
-                    borderRadius: circularBorder(radius: 0),
-                    child: Image.asset(
-                      ImagePath.send,
-                      fit: BoxFit.cover,
-                    )),
+                  borderRadius: circularBorder(radius: 0),
+                  child: Image.asset(
+                    ImagePath.send,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             )
           ],

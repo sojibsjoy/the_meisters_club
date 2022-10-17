@@ -66,8 +66,10 @@ class _MenuScreenState extends State<MenuScreen> {
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
                           child: Text(
-                            'Welcome to the 1% ' +
-                                profileController.profileDetailsMap['name'],
+                            Get.find<TabScreenController>().isLogin.value
+                                ? 'Welcome to the 1% ' +
+                                    profileController.profileDetailsMap['name']
+                                : 'Welcome to the 1%',
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,

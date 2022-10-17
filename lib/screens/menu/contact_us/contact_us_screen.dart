@@ -19,10 +19,10 @@ class ContactUsScreen extends StatefulWidget {
 
 class _ContactUsScreenState extends State<ContactUsScreen> {
   double fixedSpace = 17.0;
-  final supportController=Get.put(SupportController());
+  final supportController = Get.put(SupportController());
   final _formKey = GlobalKey<FormState>();
 
-    @override
+  @override
   void initState() {
     supportController.nameTEC.clear();
     supportController.emailTEC.clear();
@@ -30,6 +30,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
     supportController.messageTEC.clear();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -46,87 +47,88 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               Stack(
                 alignment: Alignment.topCenter,
                 children: [
-                  backgroundThemeWidgetSplashScreen(isOtherScreen: true, isSecondVisible: true),
+                  backgroundThemeWidgetSplashScreen(
+                      isOtherScreen: true, isSecondVisible: true),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                       // height: Get.height - 110.7,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                        const SizedBox(
-                          height: 24,
-                        ),
-                        titleText("We’re Here to Help You", fontSize: 22),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "We always want to hear from you! Let us know how we can best help you and we'll do our very best.",
-                          style: regular400.copyWith(fontSize: 16, color: AppColor.subFontColor),
-                        ),
-                        const SizedBox(
-                          height: 34,
-                        ),
-                        CustomTextField(
-                          controller: supportController.nameTEC,
-                          nameValidator: true,
-                          validationMessage: "Please enter full name",
-                          inputType: TextInputType.text,
-                          hintText: "Full Name",
-                          limit: [],
-                          capitalization: TextCapitalization.none,
-                        ),
-                        SizedBox(
-                          height: fixedSpace,
-                        ),
-                        CustomTextField(
-                          controller: supportController.emailTEC,
-                          emailValidator: true,
-                          validationMessage: "Please enter valid email",
-                          inputType: TextInputType.text,
-                          hintText: "Email Address",
-                          limit: [],
-                          capitalization: TextCapitalization.none,
-                        ),
-                        SizedBox(
-                          height: fixedSpace,
-                        ),
-                        CustomTextField(
-                          controller: supportController.phoneTEC,
-                          phoneValidator: true,
-                          validationMessage: "Please enter valid Phone",
-                          inputType: TextInputType.phone,
-                          hintText: "Phone Number",
-                          limit: [],
-                          capitalization: TextCapitalization.none,
-                        ),
-                        SizedBox(
-                          height: fixedSpace,
-                        ),
-                        CustomTextField(
-                          controller: supportController.messageTEC,
-                          textAreaValidator: true,
-                          validationMessage: "Please type Message",
-                          inputType: TextInputType.multiline,
-                          hintText: "type Message",
-                          limit: [],
-                          capitalization: TextCapitalization.none,
-                        ),
-
-                        SizedBox(
-                          height: fixedSpace,
-                        ),
-                        CustomButton(
-                          text: 'Submit',
-                          onTap: () {
-                            if (_formKey.currentState!.validate()) {
-                              print("---Submit---");
-                              supportController.submitContactUs();
-                            }
-                          },
-                        ),
-                      ]),
+                            const SizedBox(
+                              height: 24,
+                            ),
+                            titleText("We’re Here to Help You", fontSize: 22),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "We always want to hear from you! Let us know how we can best help you and we'll do our very best.",
+                              style: regular400.copyWith(
+                                  fontSize: 16, color: AppColor.subFontColor),
+                            ),
+                            const SizedBox(
+                              height: 34,
+                            ),
+                            CustomTextField(
+                              controller: supportController.nameTEC,
+                              nameValidator: true,
+                              validationMessage: "Please enter full name",
+                              inputType: TextInputType.text,
+                              hintText: "Full Name",
+                              limit: [],
+                              capitalization: TextCapitalization.none,
+                            ),
+                            SizedBox(
+                              height: fixedSpace,
+                            ),
+                            CustomTextField(
+                              controller: supportController.emailTEC,
+                              emailValidator: true,
+                              validationMessage: "Please enter valid email",
+                              inputType: TextInputType.text,
+                              hintText: "Email Address",
+                              limit: [],
+                              capitalization: TextCapitalization.none,
+                            ),
+                            SizedBox(
+                              height: fixedSpace,
+                            ),
+                            CustomTextField(
+                              controller: supportController.phoneTEC,
+                              phoneValidator: true,
+                              validationMessage: "Please enter valid Phone",
+                              inputType: TextInputType.phone,
+                              hintText: "Phone Number",
+                              limit: [],
+                              capitalization: TextCapitalization.none,
+                            ),
+                            SizedBox(
+                              height: fixedSpace,
+                            ),
+                            CustomTextField(
+                              controller: supportController.messageTEC,
+                              textAreaValidator: true,
+                              validationMessage: "Please type Message",
+                              inputType: TextInputType.multiline,
+                              hintText: "Type Message",
+                              limit: [],
+                              capitalization: TextCapitalization.none,
+                            ),
+                            SizedBox(
+                              height: fixedSpace,
+                            ),
+                            CustomButton(
+                              text: 'Submit',
+                              onTap: () {
+                                if (_formKey.currentState!.validate()) {
+                                  print("---Submit---");
+                                  supportController.submitContactUs();
+                                }
+                              },
+                            ),
+                          ]),
                     ),
                   )
                 ],

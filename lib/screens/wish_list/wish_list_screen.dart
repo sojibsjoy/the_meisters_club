@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../controllers/event details/event_detail_controller.dart';
 import '../../controllers/tab/tab_screen_controller.dart';
-import '../../utils/login_checker/login_checker.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:xyz/widgets/recommended_login/recommended_login.dart';
 import '../../config/colors_path_provider/colors.dart';
@@ -62,9 +59,8 @@ class _WishListScreenState extends State<WishListScreen> {
                               return upComingEventsWidget(
                                 eventId: eventDetailsController
                                     .eventWishList[index]['eventId'],
-                                image:
-                                    eventDetailsController.eventWishList[index]
-                                        ['eventImagesResponses'][0]['image'],
+                                image: eventDetailsController
+                                    .eventWishList[index]['homeBanner'],
                                 title: eventDetailsController
                                     .eventWishList[index]['eventName'],
                                 locationName: eventDetailsController

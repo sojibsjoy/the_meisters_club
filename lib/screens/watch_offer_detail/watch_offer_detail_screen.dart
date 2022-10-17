@@ -1,6 +1,4 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import '../../config/colors_path_provider/colors.dart';
 import '../../config/image_path_provider/image_path_provider.dart';
@@ -10,8 +8,6 @@ import '../../utils/url_launcher/url_launcher.dart';
 import '../../widgets/common_widgets/common_widgets.dart';
 import '../../widgets/custom_button/cutsomButton.dart';
 import '../all_event/event_detail/event_detail_screen.dart';
-import 'package:url_launcher/link.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class WatchOfferDetailScreen extends StatefulWidget {
   final int productId;
@@ -45,8 +41,8 @@ class _WatchOfferDetailScreenState extends State<WatchOfferDetailScreen> {
                   child: Stack(
                     children: [
                       /// Background Layout
-                      backgroundLayout(
-                        imagePath:
+                      backgroundLayouttt(
+                        image:
                             productController.productDetailsMap['bannerImage'],
                       ),
 
@@ -205,6 +201,41 @@ class _WatchOfferDetailScreenState extends State<WatchOfferDetailScreen> {
       ),
     );
   }
+}
+
+Widget backgroundLayouttt({required String image}) {
+  return Stack(
+    alignment: Alignment.center,
+    children: [
+      ///image view
+      Positioned(
+        top: 0,
+        child: SizedBox(
+          // color: Colors.green,
+          height: Get.height / 2.8,
+          width: Get.width,
+          child: Image.network(
+            image,
+            fit: BoxFit.fill,
+          ),
+        ),
+      ),
+
+      /// background image view
+      Positioned(
+        top: Get.height / 2.8 - 30,
+        child: Container(
+          width: Get.width,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: AppColor.background,
+            borderRadius: circularBorderParticular(topLeft: 25, topRight: 25),
+          ),
+          child: bgThemeWidget(),
+        ),
+      ),
+    ],
+  );
 }
 
 Widget recommendedWatchWidget({required String image}) {
