@@ -42,20 +42,13 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
           newsDetailsScreenAppBar(
             index: widget.index,
             title: newsDetails!['eventName'],
-<<<<<<< HEAD
-            date: newsDetails!['eventDate'],
-=======
->>>>>>> 560cba9773a2baf78bdf3cf7331b18089e72028c
           ),
           Expanded(
             child: SingleChildScrollView(
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
-<<<<<<< HEAD
                   crossAxisAlignment: CrossAxisAlignment.start,
-=======
->>>>>>> 560cba9773a2baf78bdf3cf7331b18089e72028c
                   children: [
                     Container(
                       height: 250,
@@ -67,7 +60,6 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                             newsDetails!['eventImagesResponses'][0]['image'],
                             fit: BoxFit.cover),
                       ),
-<<<<<<< HEAD
                     ),
                     HtmlView(text: newsDetails!['eventDetails']),
                     const Padding(
@@ -82,10 +74,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                       ),
                     ),
                     HtmlView(text: newsDetails!['eventBigDetails'] ?? ''),
-=======
-                    ),
                     HtmlView(text: newsDetails!['eventDetails']),
->>>>>>> 560cba9773a2baf78bdf3cf7331b18089e72028c
                   ],
                 ),
               ),
@@ -109,23 +98,6 @@ Widget textView(text) {
 
 Widget importantNotes(String text) {
   return Container(
-<<<<<<< HEAD
-      // height: 57,
-      width: Get.width,
-      margin: const EdgeInsets.only(top: 20, bottom: 4),
-      decoration: BoxDecoration(
-          color: AppColor.border, borderRadius: circularBorder(radius: 10)),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Text(
-          text,
-          style: regular400.copyWith(
-              fontSize: 14,
-              color: AppColor.subFontColor,
-              fontStyle: FontStyle.italic),
-        ),
-      ));
-=======
     // height: 57,
     width: Get.width,
     margin: const EdgeInsets.only(top: 20, bottom: 4),
@@ -142,16 +114,11 @@ Widget importantNotes(String text) {
       ),
     ),
   );
->>>>>>> 560cba9773a2baf78bdf3cf7331b18089e72028c
 }
 
 Widget newsDetailsScreenAppBar({
   required int index,
   required String title,
-<<<<<<< HEAD
-  required String date,
-=======
->>>>>>> 560cba9773a2baf78bdf3cf7331b18089e72028c
 }) {
   return Container(
     // height: 44,
