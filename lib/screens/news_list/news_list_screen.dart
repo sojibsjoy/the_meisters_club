@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../config/colors_path_provider/colors.dart';
-import '../../config/image_path_provider/image_path_provider.dart';
 import '../../controllers/news_and_update/news_and_update_controller.dart';
 import '../../widgets/common_widgets/common_widgets.dart';
 import '../home/home_screen.dart';
@@ -40,7 +39,7 @@ class _NewsListScreenState extends State<NewsListScreen> {
         children: [
           Align(
             alignment: Alignment.centerLeft,
-            child: appBarForNavigateScreen(title: "News & Updates"),
+            child: appBarForNavigateScreen(title: "Partners"),
           ),
           const SizedBox(height: 4),
           Obx(() {
@@ -66,7 +65,8 @@ class _NewsListScreenState extends State<NewsListScreen> {
                         date: newsAndUpdateController.newsListAll[index]
                             ['eventDate'],
                         imagePath: newsAndUpdateController.newsListAll[index]
-                            ['eventImagesResponses'][0]['image'],
+                                ['homeBanner'] ??
+                            '',
                       );
                     })),
               ),

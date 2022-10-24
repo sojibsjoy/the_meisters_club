@@ -249,7 +249,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               padding: horizontalPadding,
                               child: Text(
                                 // "${profileController.profileDetailsMap['name'] ?? " "} Attend events",
-                                'My Events',
+                                'My Events (${profileController.userEventsList.length})',
                                 style: regular700.copyWith(fontSize: 20),
                               ),
                             ),
@@ -267,7 +267,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         .userEventsList[index]['eventId'],
                                     image: profileController
                                             .userEventsList[index]
-                                        ['eventImagesResponses'][0]['image'],
+                                        ['homeBanner'],
                                     title: profileController
                                         .userEventsList[index]['eventName'],
                                     locationName: profileController

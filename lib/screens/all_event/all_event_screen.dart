@@ -60,7 +60,7 @@ class _AllEventScreenState extends State<AllEventScreen> {
                         eventId: eventDetailsController.eventListAll[index]
                             ['eventId'],
                         image: eventDetailsController.eventListAll[index]
-                            ['eventImagesResponses'][0]['image'],
+                            ['homeBanner'],
                         title: eventDetailsController.eventListAll[index]
                             ['eventName'],
                         locationName: eventDetailsController.eventListAll[index]

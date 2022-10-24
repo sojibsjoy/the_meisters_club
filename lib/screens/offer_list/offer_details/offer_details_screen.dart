@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -8,7 +7,9 @@ import 'package:xyz/widgets/common_widgets/common_widgets.dart';
 import '../../../config/image_path_provider/image_path_provider.dart';
 import '../../../controllers/offers/offers_controller.dart';
 import '../../../widgets/custom_button/cutsomButton.dart';
-import '../../all_event/event_detail/event_detail_screen.dart' as eventDetailsScrn;
+import '../../all_event/event_detail/event_detail_screen.dart'
+    as eventDetailsScrn;
+import '../../all_event/event_detail/event_detail_screen.dart';
 import '../../home/home_screen.dart';
 
 class OfferDetailScreen extends StatefulWidget {
@@ -45,15 +46,16 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                       child: Stack(
                         alignment: Alignment.bottomCenter,
                         children: [
-                          Positioned(
-                            top: 0,
-                            child: SizedBox(
-                              height: 200,
-                              width: Get.width,
-                              child: Image.network(_offersController.offerDetails['companyBanner'],
-                                  fit: BoxFit.cover),
-                            ),
-                          ),
+                          backgroundLayout(imageList: _offersController.offerDetails['eventImagesResponses'],),
+                          // Positioned(
+                          //   top: 0,
+                          //   child: SizedBox(
+                          //     height: 200,
+                          //     width: Get.width,
+                          //     child: Image.network(_offersController.offerDetails['companyBanner'],
+                          //         fit: BoxFit.cover),
+                          //   ),
+                          // ),
                           Positioned(
                             top: 16,
                             left: 16,
@@ -64,7 +66,8 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                               child: SizedBox(
                                 // height: 200,
                                 // width: Get.width,
-                                child: SvgPicture.asset(ImagePath.arrow_back_field),
+                                child: SvgPicture.asset(
+                                    ImagePath.arrow_back_field),
                               ),
                             ),
                           ),
@@ -75,32 +78,44 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                       height: 16,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 4),
-                      child: titleText(_offersController.offerDetails['companyName'], fontSize: 20),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 4),
+                      child: titleText(
+                          _offersController.offerDetails['companyName'],
+                          fontSize: 20),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 4),
-                      child: locationRowWidget(locationName: _offersController.offerDetails['location']),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 4),
+                      child: locationRowWidget(
+                          locationName:
+                              _offersController.offerDetails['location']),
                     ),
                     const SizedBox(
                       height: 16,
                     ),
                     Container(
                       color: AppColor.border,
-                      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Text(
-                          "${_offersController.offerDetails['discount']}% OFF",
-                          style: regular500.copyWith(fontSize: 18, color: AppColor.fontColor),
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          _offersController.offerDetails['companydescription'],
-                          style: regular400.copyWith(fontSize: 14, color: AppColor.subFontColor),
-                        ),
-                      ]),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 16, horizontal: 20),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${_offersController.offerDetails['discount']}% OFF",
+                              style: regular500.copyWith(
+                                  fontSize: 18, color: AppColor.fontColor),
+                            ),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            Text(
+                              _offersController
+                                  .offerDetails['companydescription'],
+                              style: regular400.copyWith(
+                                  fontSize: 14, color: AppColor.subFontColor),
+                            ),
+                          ]),
                     ),
                     const SizedBox(
                       height: 12,
@@ -108,16 +123,20 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                     if (_offersController.offerDetails['isJoinedMember'])
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: eventDetailsScrn.youAlreadyGoingWidget(title: "You already Availed"),
+                        child: eventDetailsScrn.youAlreadyGoingWidget(
+                            title: "You already Availed"),
                       ),
                     if (_offersController.offerDetails['isJoinedMember'])
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: eventDetailsScrn.qrView(image: _offersController.offerDetails['qrCodeLocation']),
+                        child: eventDetailsScrn.qrView(
+                            image: _offersController
+                                .offerDetails['qrCodeLocation']),
                       ),
                     if (!_offersController.offerDetails['isJoinedMember'])
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 11),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8.0, vertical: 11),
                         child: labelRow("Items", showSeeAll: false),
                       ),
                     if (!_offersController.offerDetails['isJoinedMember'])
@@ -125,44 +144,56 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                           ? ListView.builder(
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
-                              itemCount: _offersController.offerDetails['items'].length,
+                              itemCount: _offersController
+                                  .offerDetails['items'].length,
                               // scrollDirection: Axis.horizontal,
                               itemBuilder: ((context, index) {
                                 return foodMenuWidget(
-                                    title: _offersController.offerDetails['items'][index]['tittle']??"",
-                                    subTitle: _offersController.offerDetails['items'][index]['description']??"",
-                                    imagePath: _offersController.offerDetails['items'][index]['bannerImage']??"",
-                                    originalPrice:
-                                        _offersController.offerDetails['items'][index]['price'].toString(),
-                                    discountedPrice: _offersController.offerDetails['items'][index]
+                                    title: _offersController.offerDetails['items']
+                                            [index]['tittle'] ??
+                                        "",
+                                    subTitle: _offersController.offerDetails['items']
+                                            [index]['description'] ??
+                                        "",
+                                    imagePath: _offersController.offerDetails['items']
+                                            [index]['bannerImage'] ??
+                                        "",
+                                    originalPrice: _offersController
+                                        .offerDetails['items'][index]['price']
+                                        .toString(),
+                                    discountedPrice: _offersController
+                                        .offerDetails['items'][index]
                                             ['discountPrice']
                                         .toString());
                               }))
                           : Container()
                   ],
                 ),
-                bottomNavigationBar: _offersController.offerDetails['isJoinedMember'] == false
-                    ? CustomButton(
-                        text: 'Avail Offer',
-                        borderRadiusChange: true,
-                        newRadius: 0,
-                        isMarginZero: true,
-                        onTap: () {
-                          _offersController
-                              .availOffer(
-                            offerId: widget.offerId,
+                bottomNavigationBar:
+                    _offersController.offerDetails['isJoinedMember'] == false
+                        ? CustomButton(
+                            text: 'Avail Offer',
+                            borderRadiusChange: true,
+                            newRadius: 0,
+                            isMarginZero: true,
+                            onTap: () {
+                              _offersController
+                                  .availOffer(
+                                offerId: widget.offerId,
+                              )
+                                  .whenComplete(() {
+                                setState(() {
+                                  _offersController.scrollController.animateTo(
+                                      _offersController.scrollController
+                                          .position.maxScrollExtent,
+                                      duration:
+                                          const Duration(milliseconds: 500),
+                                      curve: Curves.ease);
+                                });
+                              });
+                            },
                           )
-                              .whenComplete(() {
-                            setState(() {
-                              _offersController.scrollController.animateTo(
-                                  _offersController.scrollController.position.maxScrollExtent,
-                                  duration: const Duration(milliseconds: 500),
-                                  curve: Curves.ease);
-                            });
-                          });
-                        },
-                      ):null
-                    ,
+                        : null,
               )
             : Container();
       }),
@@ -181,7 +212,8 @@ Widget foodMenuWidget({
     onTap: () {},
     child: Container(
       height: 110,
-      decoration: BoxDecoration(borderRadius: circularBorder(radius: 10), color: AppColor.accent2),
+      decoration: BoxDecoration(
+          borderRadius: circularBorder(radius: 10), color: AppColor.accent2),
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
       child: Row(children: [
         Container(
@@ -189,7 +221,8 @@ Widget foodMenuWidget({
           height: 90,
           width: 93,
           child: ClipRRect(
-              borderRadius: BorderRadius.circular(10), child: Image.network(imagePath, fit: BoxFit.cover)),
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(imagePath, fit: BoxFit.cover)),
         ),
         // const SizedBox(width: 10,),
         Container(
@@ -203,14 +236,16 @@ Widget foodMenuWidget({
                 title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: regular700.copyWith(color: AppColor.fontColor, fontSize: 18),
+                style: regular700.copyWith(
+                    color: AppColor.fontColor, fontSize: 18),
               ),
               const Spacer(),
               Text(
                 subTitle,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: regular500.copyWith(color: AppColor.subFontColor, fontSize: 12),
+                style: regular500.copyWith(
+                    color: AppColor.subFontColor, fontSize: 12),
               ),
               const Spacer(),
               Row(
@@ -220,7 +255,8 @@ Widget foodMenuWidget({
                     "AED$discountedPrice",
                     textAlign: TextAlign.right,
                     overflow: TextOverflow.ellipsis,
-                    style: regular700.copyWith(color: AppColor.fontColor, fontSize: 14),
+                    style: regular700.copyWith(
+                        color: AppColor.fontColor, fontSize: 14),
                   ),
                   const SizedBox(
                     width: 5,
@@ -229,7 +265,8 @@ Widget foodMenuWidget({
                     "AED$originalPrice",
                     textAlign: TextAlign.right,
                     overflow: TextOverflow.ellipsis,
-                    style: regular400.copyWith(color: AppColor.subFontColor, fontSize: 12),
+                    style: regular400.copyWith(
+                        color: AppColor.subFontColor, fontSize: 12),
                   ),
                 ],
               )
