@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:photo_view/photo_view.dart';
 import '../../config/colors_path_provider/colors.dart';
 import '../../config/image_path_provider/image_path_provider.dart';
 import '../../config/text_style_path_provider/text_style.dart';
@@ -42,6 +43,7 @@ class _WatchOfferDetailScreenState extends State<WatchOfferDetailScreen> {
                     children: [
                       /// Background Layout
                       backgroundLayouttt(
+                        ctx: context,
                         image:
                             productController.productDetailsMap['bannerImage'],
                       ),
@@ -68,15 +70,13 @@ class _WatchOfferDetailScreenState extends State<WatchOfferDetailScreen> {
                                         fontSize: 20,
                                       ),
                                     ),
-                                    const SizedBox(
-                                      height: 16,
-                                    ),
-                                    Text(
-                                      "\$ ${productController.productDetailsMap['price'] ?? ""}",
-                                      style: regular400.copyWith(
-                                          fontSize: 16,
-                                          color: AppColor.fontColor),
-                                    ),
+                                    // const SizedBox(height: 16),
+                                    // Text(
+                                    //   "\$ ${productController.productDetailsMap['price'] ?? ""}",
+                                    //   style: regular400.copyWith(
+                                    //       fontSize: 16,
+                                    //       color: AppColor.fontColor),
+                                    // ),
                                     // const SizedBox(
                                     //   height: 16,
                                     // ),
@@ -136,6 +136,7 @@ class _WatchOfferDetailScreenState extends State<WatchOfferDetailScreen> {
                                                         'productImagesResponses']
                                                     .length, (index) {
                                               return recommendedWatchWidget(
+                                                  ctx: context,
                                                   image: productController
                                                               .productDetailsMap[
                                                           'productImagesResponses']
@@ -191,7 +192,9 @@ class _WatchOfferDetailScreenState extends State<WatchOfferDetailScreen> {
         width: Get.width,
         margin: const EdgeInsets.only(top: 20, bottom: 4),
         decoration: BoxDecoration(
-            color: AppColor.border, borderRadius: circularBorder(radius: 10)),
+          color: AppColor.border,
+          borderRadius: circularBorder(radius: 10),
+        ),
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 16),
           child: Image.asset(
@@ -203,7 +206,71 @@ class _WatchOfferDetailScreenState extends State<WatchOfferDetailScreen> {
   }
 }
 
-Widget backgroundLayouttt({required String image}) {
+_openImageView(
+  BuildContext context,
+  String imgUrl,
+) {
+  AlertDialog alert = AlertDialog(
+    backgroundColor: Colors.transparent,
+    insetPadding: EdgeInsets.zero,
+    titlePadding: EdgeInsets.zero,
+    buttonPadding: EdgeInsets.zero,
+    actionsPadding: EdgeInsets.zero,
+    contentPadding: EdgeInsets.zero,
+    content: SizedBox(
+      height: Get.height,
+      width: Get.width,
+      child: Stack(
+        children: [
+          PhotoView(
+            imageProvider: NetworkImage(
+              imgUrl,
+            ),
+            loadingBuilder: (context, imageChunk) => Center(
+              child: Image.asset(
+                'assets/images/loading.gif',
+                key: const Key("rEdit"),
+                height: 50,
+              ),
+            ),
+            backgroundDecoration: const BoxDecoration(
+              color: Colors.transparent,
+            ),
+            errorBuilder: (context, error, stackTrace) {
+              return const Text("Error Occured!");
+            },
+          ),
+          Positioned(
+            left: 12,
+            top: 20,
+            child: InkWell(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () => Get.back(),
+              child: const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+                size: 28,
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+  showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+Widget backgroundLayouttt({
+  required BuildContext ctx,
+  required String image,
+}) {
   return Stack(
     alignment: Alignment.center,
     children: [
@@ -214,9 +281,12 @@ Widget backgroundLayouttt({required String image}) {
           // color: Colors.green,
           height: Get.height / 2.8,
           width: Get.width,
-          child: Image.network(
-            image,
-            fit: BoxFit.fill,
+          child: InkWell(
+            onTap: () => _openImageView(ctx, image),
+            child: Image.network(
+              image,
+              fit: BoxFit.contain,
+            ),
           ),
         ),
       ),
@@ -238,7 +308,10 @@ Widget backgroundLayouttt({required String image}) {
   );
 }
 
-Widget recommendedWatchWidget({required String image}) {
+Widget recommendedWatchWidget({
+  required BuildContext ctx,
+  required String image,
+}) {
   return
       // Row(
       // children: [
@@ -250,9 +323,12 @@ Widget recommendedWatchWidget({required String image}) {
       child: SizedBox(
           width: Get.width / 3.65,
           height: Get.width / 3,
-          child: Image.network(
-            image,
-            fit: BoxFit.cover,
+          child: InkWell(
+            onTap: () => _openImageView(ctx, image),
+            child: Image.network(
+              image,
+              fit: BoxFit.cover,
+            ),
           )),
     ),
   );

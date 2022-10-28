@@ -91,12 +91,12 @@ class _MenuScreenState extends State<MenuScreen> {
                               Get.back();
                               tabController.setScreen(isNotification: true);
                             }),
-                        menuItem(
-                            title: "Chat Rooms",
-                            imagePath: ImagePath.chat,
-                            onTap: () {
-                              Get.back();
-                            }),
+                        // menuItem(
+                        //     title: "Chat Rooms",
+                        //     imagePath: ImagePath.chat,
+                        //     onTap: () {
+                        //       Get.back();
+                        //     }),
                         divider(),
                         menuItem(
                             title: "Contact Us",
