@@ -61,20 +61,20 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                             fit: BoxFit.cover),
                       ),
                     ),
-                    HtmlView(text: newsDetails!['eventDetails']),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      child: Text(
-                        'Details',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+                    // HtmlView(text: newsDetails!['eventDetails']),
+                    // const Padding(
+                    //   padding: EdgeInsets.symmetric(vertical: 20),
+                    //   child: Text(
+                    //     'Details',
+                    //     style: TextStyle(
+                    //       fontSize: 18,
+                    //       color: Colors.white,
+                    //       fontWeight: FontWeight.bold,
+                    //     ),
+                    //   ),
+                    // ),
                     HtmlView(text: newsDetails!['eventBigDetails'] ?? ''),
-                    HtmlView(text: newsDetails!['eventDetails']),
+                    // HtmlView(text: newsDetails!['eventDetails']),
                   ],
                 ),
               ),

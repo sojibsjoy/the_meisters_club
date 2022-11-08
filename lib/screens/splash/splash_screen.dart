@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // String videoLink= await splashScreenController.getFrontVideoLink()??"";
     // print("############## $videoLink -----------");
     _controller = VideoPlayerController.asset(
-      "assets/video/frontVideo.mp4",
+      "assets/video/intro.mp4",
     )..initialize().then((_) {
         setState(() {});
         _controller?.play();
@@ -80,8 +80,8 @@ class _SplashScreenState extends State<SplashScreen> {
                     // color: Colors.pink,
                     // padding: const EdgeInsets.all(5),
                     child: AspectRatio(
-                      aspectRatio: 1.5,
-                      // aspectRatio: _controller!.value.aspectRatio,
+                      // aspectRatio: 1.5,
+                      aspectRatio: _controller!.value.aspectRatio,
                       child: VideoPlayer(
                         _controller!,
                       ),

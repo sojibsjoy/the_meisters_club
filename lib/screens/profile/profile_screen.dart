@@ -265,9 +265,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   return upComingEventsWidget(
                                     eventId: profileController
                                         .userEventsList[index]['eventId'],
-                                    image: profileController
-                                            .userEventsList[index]
-                                        ['homeBanner'],
+                                    image:
+                                        profileController.userEventsList[index]
+                                                ['homeBanner'] ??
+                                            '',
                                     title: profileController
                                         .userEventsList[index]['eventName'],
                                     locationName: profileController

@@ -271,31 +271,32 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ? SizedBox(
                                       height: 200,
                                       child: ListView.builder(
-                                          shrinkWrap: true,
-                                          itemCount: offersController
-                                              .offerListHome.length,
-                                          scrollDirection: Axis.horizontal,
-                                          itemBuilder: ((context, index) {
-                                            return offerWidget(
-                                              offerId: offersController
-                                                      .offerListHome[index]
-                                                  ['offerId'],
-                                              title: offersController
-                                                      .offerListHome[index]
-                                                  ['companyName'],
-                                              offerRate: offersController
-                                                  .offerListHome[index]
-                                                      ['discount']
-                                                  .toString(),
-                                              image: offersController
-                                                      .offerListHome[index]
-                                                  ['companyBanner'],
-                                              isEligble: offersController
-                                                          .offerListHome[index]
-                                                      ['isEligble'] ??
-                                                  false,
-                                            );
-                                          })),
+                                        shrinkWrap: true,
+                                        itemCount: offersController
+                                            .offerListHome.length,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (context, index) {
+                                          return offerWidget(
+                                            offerId: offersController
+                                                    .offerListHome[index]
+                                                ['offerId'],
+                                            title: offersController
+                                                    .offerListHome[index]
+                                                ['companyName'],
+                                            offerRate: offersController
+                                                .offerListHome[index]
+                                                    ['discount']
+                                                .toString(),
+                                            image: offersController
+                                                    .offerListHome[index]
+                                                ['companyBanner'],
+                                            isEligble: offersController
+                                                        .offerListHome[index]
+                                                    ['isEligble'] ??
+                                                false,
+                                          );
+                                        },
+                                      ),
                                     )
                                   : Container(),
                               const SizedBox(
@@ -606,11 +607,12 @@ Widget upComingEventsWidget({
                 height: 200,
                 width: isFullWidth ? Get.width : 340,
                 child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                      image,
-                      fit: BoxFit.fill,
-                    )),
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.network(
+                    image,
+                    fit: BoxFit.fill,
+                  ),
+                ),
               ),
               Container(
                   margin: const EdgeInsets.only(top: 14),
