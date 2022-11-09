@@ -7,7 +7,6 @@ import 'package:xyz/config/date_formator_path_provider/date_formator.dart';
 import '../../config/colors_path_provider/colors.dart';
 import '../../config/image_path_provider/image_path_provider.dart';
 import '../../config/text_style_path_provider/text_style.dart';
-import '../../controllers/tab/tab_screen_controller.dart';
 import '../../screens/notification/notification_screen.dart';
 import '../../utils/url_launcher/url_launcher.dart';
 import '../gradient_text/gradient_text.dart';
@@ -33,7 +32,7 @@ Widget appBarTabScreen({
               style: regular700.copyWith(color: AppColor.primary, fontSize: 14),
             ),
             Text(
-              "welcome to the 1%",
+              "WELCOME TO THE 1%",
               style: regular400.copyWith(
                   color: AppColor.subFontColor, fontSize: 8),
             )
@@ -72,7 +71,7 @@ Widget appBarMenuScreen() {
                     regular700.copyWith(color: AppColor.primary, fontSize: 14),
               ),
               Text(
-                "welcome to the 1%",
+                "WELCOME TO THE 1%",
                 style: regular400.copyWith(
                     color: AppColor.subFontColor, fontSize: 8),
               )

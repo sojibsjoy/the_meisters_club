@@ -46,7 +46,10 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                       child: Stack(
                         alignment: Alignment.bottomCenter,
                         children: [
-                          backgroundLayout(imageList: _offersController.offerDetails['eventImagesResponses'],),
+                          backgroundLayout(
+                            imageList: _offersController
+                                .offerDetails['eventImagesResponses'],
+                          ),
                           // Positioned(
                           //   top: 0,
                           //   child: SizedBox(
@@ -128,18 +131,11 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                       ),
                     if (_offersController.offerDetails['isJoinedMember'])
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: eventDetailsScrn.qrView(
-                            image: _offersController
-                                .offerDetails['qrCodeLocation']),
-                      ),
-                    if (!_offersController.offerDetails['isJoinedMember'])
-                      Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8.0, vertical: 11),
                         child: labelRow("Items", showSeeAll: false),
                       ),
-                    if (!_offersController.offerDetails['isJoinedMember'])
+                    if (_offersController.offerDetails['isJoinedMember'])
                       _offersController.offerDetails['items'] != null
                           ? ListView.builder(
                               physics: const NeverScrollableScrollPhysics(),
@@ -166,7 +162,14 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
                                             ['discountPrice']
                                         .toString());
                               }))
-                          : Container()
+                          : Container(),
+                    if (_offersController.offerDetails['isJoinedMember'])
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: eventDetailsScrn.qrView(
+                            image: _offersController
+                                .offerDetails['qrCodeLocation']),
+                      ),
                   ],
                 ),
                 bottomNavigationBar:

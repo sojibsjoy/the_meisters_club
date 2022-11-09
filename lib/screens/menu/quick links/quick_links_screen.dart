@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:xyz/config/image_path_provider/image_path_provider.dart';
-import 'package:xyz/config/text_style_path_provider/text_style.dart';
+import 'package:xyz/utils/toast/toast.dart';
 
 import '../../../config/colors_path_provider/colors.dart';
 import '../../../controllers/support/support_controller.dart';
-import '../../../controllers/tab/tab_screen_controller.dart';
 import '../../../widgets/common_widgets/common_widgets.dart';
-import '../../../widgets/custom_button/cutsomButton.dart';
-import '../../../widgets/text_field/customTextField.dart';
 import '../../splash/splash_screen.dart';
 
 class QuickLinksScreen extends StatefulWidget {
@@ -36,7 +34,8 @@ class _QuickLinksScreenState extends State<QuickLinksScreen> {
         return Stack(
           alignment: Alignment.topCenter,
           children: [
-            backgroundThemeWidgetSplashScreen(isOtherScreen: true, isSecondVisible: true),
+            backgroundThemeWidgetSplashScreen(
+                isOtherScreen: true, isSecondVisible: true),
             supportController.aboutMap.isNotEmpty
                 ? Column(
                     children: [
@@ -59,10 +58,26 @@ class _QuickLinksScreenState extends State<QuickLinksScreen> {
                                   ),
                                   Row(
                                     children: [
-                                      socialMediaIcon(imagePath: ImagePath.facebook,onTap: (){}),
-                                      socialMediaIcon(imagePath: ImagePath.instagram,onTap: (){}),
-                                      socialMediaIcon(imagePath: ImagePath.twitter,onTap: (){}),
-                                      socialMediaIcon(imagePath: ImagePath.youtube,onTap: (){}),
+                                      socialMediaIcon(
+                                        imagePath: ImagePath.tiktok,
+                                        link:
+                                            "https://www.tiktok.com/@themeistersclub",
+                                      ),
+                                      socialMediaIcon(
+                                        imagePath: ImagePath.instagram,
+                                        link:
+                                            "https://www.instagram.com/themeistersclub/",
+                                      ),
+                                      socialMediaIcon(
+                                        imagePath: ImagePath.twitter,
+                                        link:
+                                            "https://twitter.com/themeistersclub",
+                                      ),
+                                      socialMediaIcon(
+                                        imagePath: ImagePath.youtube,
+                                        link:
+                                            "https://www.youtube.com/channel/UCpME43uj2cak3yUS0sLckYA",
+                                      ),
                                     ],
                                   )
                                 ],
@@ -81,17 +96,31 @@ class _QuickLinksScreenState extends State<QuickLinksScreen> {
   }
 }
 
-Widget socialMediaIcon({required String imagePath,required Function() onTap}) {
+Widget socialMediaIcon({
+  required String imagePath,
+  required String link,
+}) {
   return GestureDetector(
-    onTap:onTap,
+    onTap: () async {
+      if (await canLaunchUrl(Uri.parse(link))) {
+        await launchUrl(Uri.parse(link));
+      } else {
+        Toast.successToast(
+          message: "Failed to Open!",
+        );
+      }
+    },
     child: Container(
+      width: 51,
       margin: const EdgeInsets.only(right: 18),
-      child: SizedBox(
-          width: 51,
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+      ),
+      child: ClipOval(
           child: Image.asset(
-            imagePath,
-            fit: BoxFit.fitWidth,
-          )),
+        imagePath,
+        fit: BoxFit.fitWidth,
+      )),
     ),
   );
 }

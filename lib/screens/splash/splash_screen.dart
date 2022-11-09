@@ -20,7 +20,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   final tabScreenController = Get.put(TabScreenController());
   final splashScreenController = Get.put(SplashScreenController());
-  VideoPlayerController? _controller;
+  late VideoPlayerController _controller;
 
   @override
   void initState() {
@@ -32,10 +32,10 @@ class _SplashScreenState extends State<SplashScreen> {
     // String videoLink= await splashScreenController.getFrontVideoLink()??"";
     // print("############## $videoLink -----------");
     _controller = VideoPlayerController.asset(
-      "assets/video/intro.mp4",
+      "assets/video/intro_v.mp4",
     )..initialize().then((_) {
         setState(() {});
-        _controller?.play();
+        _controller.play();
       });
 
     Timer(
@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void dispose() {
     super.dispose();
-    _controller?.dispose();
+    _controller.dispose();
   }
 
   Future checkLogin() async {
@@ -74,20 +74,15 @@ class _SplashScreenState extends State<SplashScreen> {
         alignment: Alignment.center,
         children: [
           backgroundThemeWidgetSplashScreen(),
-          if (_controller != null)
-            _controller!.value.isInitialized
-                ? Container(
-                    // color: Colors.pink,
-                    // padding: const EdgeInsets.all(5),
-                    child: AspectRatio(
-                      // aspectRatio: 1.5,
-                      aspectRatio: _controller!.value.aspectRatio,
-                      child: VideoPlayer(
-                        _controller!,
-                      ),
-                    ),
-                  )
-                : Container(),
+          _controller.value.isInitialized
+              ? AspectRatio(
+                  // aspectRatio: 1.1,
+                  aspectRatio: _controller.value.aspectRatio,
+                  child: VideoPlayer(
+                    _controller,
+                  ),
+                )
+              : Container(),
         ],
       ),
     );

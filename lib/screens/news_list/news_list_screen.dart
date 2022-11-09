@@ -39,7 +39,7 @@ class _NewsListScreenState extends State<NewsListScreen> {
         children: [
           Align(
             alignment: Alignment.centerLeft,
-            child: appBarForNavigateScreen(title: "Partners"),
+            child: appBarForNavigateScreen(title: "PARTNERS"),
           ),
           const SizedBox(height: 4),
           Obx(() {

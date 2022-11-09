@@ -355,7 +355,7 @@ Widget youAlreadyGoingWidget({String? title}) {
             ImagePath.check_circle_svg,
           )),
       Text(
-        title ?? "You are already going",
+        title ?? "You have confirmed your attendance",
         style: regular600.copyWith(
             fontSize: 16, color: AppColor.blueColor.withOpacity(0.8)),
       )
