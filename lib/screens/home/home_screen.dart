@@ -266,7 +266,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 8.0, vertical: 16),
                                       child: labelRow(
-                                        "PARTNERS DISCOUNT",
+                                        "MEMBER BENEFITS",
                                         onTap: () {
                                           Print("see All");
                                           Get.to(() => const OfferListScreen());

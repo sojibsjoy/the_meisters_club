@@ -43,7 +43,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
           key: _formKey,
           child: SingleChildScrollView(
             child: Column(children: [
-              appBarForMenuScreens(title: "Contact Us"),
+              appBarForMenuScreens(title: "Contact The Watch Meister"),
               Stack(
                 alignment: Alignment.topCenter,
                 children: [

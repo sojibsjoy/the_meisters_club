@@ -42,7 +42,7 @@ class _OfferListScreenState extends State<OfferListScreen> {
           children: [
             Align(
               alignment: Alignment.centerLeft,
-              child: appBarForNavigateScreen(title: "PARTNERS DISCOUNT"),
+              child: appBarForNavigateScreen(title: "MEMBER BENEFITS"),
             ),
             const SizedBox(height: 4),
             Expanded(

@@ -101,7 +101,7 @@ class _MenuScreenState extends State<MenuScreen> {
                         //     }),
                         divider(),
                         menuItem(
-                            title: "Contact Us",
+                            title: "Contact The Watch Meister",
                             imagePath: ImagePath.contact_us,
                             onTap: () {
                               Get.to(() => const ContactUsScreen());
