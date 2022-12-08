@@ -167,7 +167,7 @@ class _WatchOfferDetailScreenState extends State<WatchOfferDetailScreen> {
                 floatingActionButton: FloatingActionButton.extended(
                     backgroundColor: AppColor.accent,
                     label: const CustomButton(
-                        text: 'Contact Now',
+                        text: 'Contact The Watch Meister',
                         borderRadiusChange: true,
                         newRadius: 0,
                         isMarginZero: true),

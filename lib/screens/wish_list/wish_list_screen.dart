@@ -60,7 +60,8 @@ class _WishListScreenState extends State<WishListScreen> {
                                 eventId: eventDetailsController
                                     .eventWishList[index]['eventId'],
                                 image: eventDetailsController
-                                    .eventWishList[index]['homeBanner'],
+                                        .eventWishList[index]['homeBanner'] ??
+                                    '',
                                 title: eventDetailsController
                                     .eventWishList[index]['eventName'],
                                 locationName: eventDetailsController

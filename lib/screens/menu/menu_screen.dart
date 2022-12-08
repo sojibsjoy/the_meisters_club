@@ -68,7 +68,9 @@ class _MenuScreenState extends State<MenuScreen> {
                           child: Text(
                             Get.find<TabScreenController>().isLogin.value
                                 ? 'Welcome to the 1% ' +
-                                    profileController.profileDetailsMap['name']
+                                        profileController
+                                            .profileDetailsMap['name'] ??
+                                    ''
                                 : 'Welcome to the 1%',
                             style: const TextStyle(
                               color: Colors.white,

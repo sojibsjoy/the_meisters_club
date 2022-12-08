@@ -113,11 +113,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ? Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 8.0, vertical: 16),
-                                      child: labelRow("Upcoming Events",
-                                          onTap: () {
-                                        Print("see All");
-                                        Get.to(() => const AllEventScreen());
-                                      }),
+                                      child: labelRow(
+                                        "THE 1% EXPERIENCE",
+                                        onTap: () {
+                                          Print("see All");
+                                          Get.to(() => const AllEventScreen());
+                                        },
+                                      ),
                                     )
                                   : Container(),
                               eventDetailsController.eventListHome.isNotEmpty
@@ -216,8 +218,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ? Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 8.0, vertical: 16),
-                                      child: labelRow("Chat Rooms",
-                                          showSeeAll: false),
+                                      child: labelRow(
+                                        "NETWORK WITH THE 1%",
+                                        showSeeAll: false,
+                                      ),
                                     )
                                   : Container(),
                               messageScreenController.chatRooms.isNotEmpty
@@ -261,10 +265,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ? Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 8.0, vertical: 16),
-                                      child: labelRow("Offers", onTap: () {
-                                        Print("see All");
-                                        Get.to(() => const OfferListScreen());
-                                      }),
+                                      child: labelRow(
+                                        "MEMBER BENEFITS",
+                                        onTap: () {
+                                          Print("see All");
+                                          Get.to(() => const OfferListScreen());
+                                        },
+                                      ),
                                     )
                                   : Container(),
                               offersController.offerListHome.isNotEmpty
@@ -306,10 +313,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ? Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 8.0, vertical: 11),
-                                      child: labelRow("Partners", onTap: () {
-                                        Print("see All");
-                                        Get.to(() => const NewsListScreen());
-                                      }),
+                                      child: labelRow(
+                                        "PARTNERS",
+                                        onTap: () {
+                                          Print("see All");
+                                          Get.to(() => const NewsListScreen());
+                                        },
+                                      ),
                                     )
                                   : Container(),
                               newsAndUpdateController.newsListHome.isNotEmpty
@@ -897,12 +907,19 @@ Widget chatRoomWidget({
                         width: 45,
                         height: 45,
                         // decoration: BoxDecoration(color:AppColor.red,borderRadius: circularBorder),
-                        child: CircleAvatar(
-                          radius: 44,
-                          backgroundImage: NetworkImage(
-                            imagePath,
+                        child: Center(
+                          child: Image.asset(
+                            'assets/images/logo.png',
+                            height: 38,
+                            fit: BoxFit.fitHeight,
                           ),
-                          backgroundColor: AppColor.background,
+                          // CircleAvatar(
+                          //   radius: 20,
+                          //   backgroundImage: NetworkImage(
+                          //     imagePath,
+                          //   ),
+                          //   backgroundColor: AppColor.background,
+                          // ),
                         )),
                   ),
                   const Positioned(

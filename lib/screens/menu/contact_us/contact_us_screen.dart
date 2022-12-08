@@ -4,7 +4,6 @@ import 'package:xyz/config/text_style_path_provider/text_style.dart';
 
 import '../../../config/colors_path_provider/colors.dart';
 import '../../../controllers/support/support_controller.dart';
-import '../../../controllers/tab/tab_screen_controller.dart';
 import '../../../widgets/common_widgets/common_widgets.dart';
 import '../../../widgets/custom_button/cutsomButton.dart';
 import '../../../widgets/text_field/customTextField.dart';

@@ -42,7 +42,7 @@ class _AllEventScreenState extends State<AllEventScreen> {
         children: [
           Align(
             alignment: Alignment.centerLeft,
-            child: appBarForNavigateScreen(title: "All Upcoming Events"),
+            child: appBarForNavigateScreen(title: "THE 1% EXPERIENCE"),
           ),
           const SizedBox(height: 4),
           Obx(() {

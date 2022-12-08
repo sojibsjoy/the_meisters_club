@@ -42,7 +42,7 @@ class _OfferListScreenState extends State<OfferListScreen> {
           children: [
             Align(
               alignment: Alignment.centerLeft,
-              child: appBarForNavigateScreen(title: "Offers"),
+              child: appBarForNavigateScreen(title: "MEMBER BENEFITS"),
             ),
             const SizedBox(height: 4),
             Expanded(
@@ -104,6 +104,5 @@ class _OfferListScreenState extends State<OfferListScreen> {
         );
       }),
     ));
-    ;
   }
 }
