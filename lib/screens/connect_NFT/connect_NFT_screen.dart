@@ -6,11 +6,9 @@ import 'package:xyz/utils/loading_dialog/loading_dialog.dart';
 
 import '../../config/colors_path_provider/colors.dart';
 import '../../config/image_path_provider/image_path_provider.dart';
-import '../../controllers/config/config_controller.dart';
 import '../../controllers/connect_to_NFT/connect_to_NFT_controller.dart';
 import '../../widgets/custom_button/cutsomButton.dart';
 import '../../widgets/text_field/customTextField.dart';
-import '../register_account/register_account_screen.dart';
 
 class ConnectNftScreen extends StatefulWidget {
   const ConnectNftScreen({Key? key}) : super(key: key);
@@ -23,11 +21,12 @@ class _ConnectNftScreenState extends State<ConnectNftScreen> {
   final connectToNftController = Get.put(ConnectToNftController());
   final _formKey = GlobalKey<FormState>();
 
-      @override
+  @override
   void initState() {
-        connectToNftController.tokenNumberTEC.clear();
+    connectToNftController.tokenNumberTEC.clear();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,13 +36,14 @@ class _ConnectNftScreenState extends State<ConnectNftScreen> {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            backgroundThemeWidget(sideLayerImagePath: ImagePath.sideLayerCropped),
+            backgroundThemeWidget(
+                sideLayerImagePath: ImagePath.sideLayerCropped),
             SafeArea(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       Get.back();
                     },
                     child: Padding(
@@ -53,17 +53,20 @@ class _ConnectNftScreenState extends State<ConnectNftScreen> {
                   ),
                   Expanded(
                     child: Align(
-                     alignment: Alignment.center, child: Container(
+                      alignment: Alignment.center,
+                      child: Container(
                         // height: 170,
                         width: Get.width,
                         // color: Colors.pink,
                         child: Column(
                           children: [
                             authScreensLogo(),
-                            const SizedBox(height: 80,),
+                            const SizedBox(
+                              height: 80,
+                            ),
                             CustomTextField(
                               controller: connectToNftController.tokenNumberTEC,
-                              tokenValidator: true ,
+                              tokenValidator: true,
                               validationMessage: "Please enter Token number",
                               inputType: TextInputType.text,
                               hintText: "Enter Token Number",
@@ -74,17 +77,20 @@ class _ConnectNftScreenState extends State<ConnectNftScreen> {
                               height: 25,
                             ),
                             CustomButton(
-                              text: 'Connect NFT',
+                              text: 'CONNECT TO THE 1%',
                               onTap: () {
                                 // Get.to(const RegisterAccountScreen());
-                                  if (_formKey.currentState!.validate()) {
-                                    print("---Connect NFT---");
-                                    connectToNftController.connectToNftVerification();
-                                    // Get.to(const RegisterAccountScreen());
-                                  }
+                                if (_formKey.currentState!.validate()) {
+                                  print("---Connect NFT---");
+                                  connectToNftController
+                                      .connectToNftVerification();
+                                  // Get.to(const RegisterAccountScreen());
+                                }
                               },
                             ),
-                            const SizedBox(height: 16,),
+                            const SizedBox(
+                              height: 16,
+                            ),
                           ],
                         ),
                       ),
@@ -100,7 +106,7 @@ class _ConnectNftScreenState extends State<ConnectNftScreen> {
   }
 }
 
-Widget authScreensLogo(){
+Widget authScreensLogo() {
   return Container(
     margin: const EdgeInsets.only(top: 65),
     height: 100,
@@ -125,12 +131,15 @@ Widget backgroundThemeWidget({required String sideLayerImagePath}) {
       // ),
       Align(
         alignment: Alignment.topRight,
-        child: SizedBox(height: Get.height / 1.8, child: Image.asset(sideLayerImagePath, fit: BoxFit.cover)),
+        child: SizedBox(
+            height: Get.height / 1.8,
+            child: Image.asset(sideLayerImagePath, fit: BoxFit.cover)),
       ),
       Align(
         alignment: Alignment.bottomLeft,
-        child:
-            SizedBox(height: Get.height / 4.87, child: Image.asset(ImagePath.bottomLayer, fit: BoxFit.cover)),
+        child: SizedBox(
+            height: Get.height / 4.87,
+            child: Image.asset(ImagePath.bottomLayer, fit: BoxFit.cover)),
       ),
       // SingleChildScrollView(
       //   child: Column(
